@@ -1,21 +1,15 @@
 const mongoose = require('mongoose');
 const express = require('express');
-const Pizza = require('./models/pizzaModel');
 const app = express();
 require('dotenv').config();
+
+const pizzasRouter = require('./routes/pizzasRoute');
 
 app.get('/', (req, res) => {
   res.json({ success: true, page: 'Homepage' });
 });
 
-app.get('/pizzas', async (req, res) => {
-  try {
-    let pizzas = await Pizza.find({});
-    res.json({ success: true, pizzas });
-  } catch (error) {
-    console.log(error);
-  }
-});
+app.use('/pizzas', pizzasRouter);
 
 app.use('*', (req, res) => {
   res.send('Route does not exist');

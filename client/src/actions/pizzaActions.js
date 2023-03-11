@@ -5,10 +5,10 @@ import {
   GET_PIZZA_SUCCESS,
 } from '../constants/pizzaConstants';
 
-export const getAllPizzas = () => (dispatch) => {
+export const getAllPizzas = () => async (dispatch) => {
   dispatch({ type: GET_PIZZA_REQUEST });
   try {
-    const { data } = axios.get('/pizzas');
+    const { data } = await axios.get('/pizzas');
     console.log({ data });
     dispatch({ type: GET_PIZZA_SUCCESS, payload: data });
   } catch (error) {
