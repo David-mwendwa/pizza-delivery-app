@@ -1,17 +1,17 @@
 import axios from 'axios';
 import {
-  GET_PIZZA_FAIL,
-  GET_PIZZA_REQUEST,
-  GET_PIZZA_SUCCESS,
+  GET_PIZZAS_FAIL,
+  GET_PIZZAS_REQUEST,
+  GET_PIZZAS_SUCCESS,
 } from '../constants/pizzaConstants';
 
 export const getAllPizzas = () => async (dispatch) => {
-  dispatch({ type: GET_PIZZA_REQUEST });
+  dispatch({ type: GET_PIZZAS_REQUEST });
   try {
     const { data } = await axios.get('/pizzas');
-    console.log({ data });
-    dispatch({ type: GET_PIZZA_SUCCESS, payload: data });
+    console.log(data.pizzas);
+    dispatch({ type: GET_PIZZAS_SUCCESS, payload: data.pizzas });
   } catch (error) {
-    dispatch({ type: GET_PIZZA_FAIL, payload: error });
+    dispatch({ type: GET_PIZZAS_FAIL, payload: error });
   }
 };

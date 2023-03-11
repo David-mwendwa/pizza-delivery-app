@@ -1,21 +1,26 @@
 import {
-  GET_PIZZA_FAIL,
-  GET_PIZZA_REQUEST,
-  GET_PIZZA_SUCCESS,
+  GET_PIZZAS_FAIL,
+  GET_PIZZAS_REQUEST,
+  GET_PIZZAS_SUCCESS,
 } from '../constants/pizzaConstants';
 
 export const getAllPizzasReducer = (state = {}, action) => {
   switch (action.type) {
-    case GET_PIZZA_REQUEST:
+    case GET_PIZZAS_REQUEST:
       return {
+        loading: true,
         ...state,
       };
-    case GET_PIZZA_SUCCESS:
+    case GET_PIZZAS_SUCCESS:
       return {
+        loading: false,
         pizzas: action.payload,
       };
-    case GET_PIZZA_FAIL:
-      return { error: action.payload };
+    case GET_PIZZAS_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

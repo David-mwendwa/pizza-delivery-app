@@ -6,8 +6,10 @@ import pizzas from '../pizzadata';
 
 const Homescreen = () => {
   const dispatch = useDispatch();
-  const getPizzas = useSelector((state) => state.getAllPizzas);
-  console.log({ pizzassss: getPizzas.pizzas });
+  const pizzasstate = useSelector((state) => state.getAllPizzasReducer);
+  console.log({ pizzasstate, pizzas: pizzasstate.pizzas });
+  const { error, loading } = pizzasstate;
+  let pizzass = pizzasstate.pizzas;
 
   useEffect(() => {
     dispatch(getAllPizzas());
@@ -15,14 +17,20 @@ const Homescreen = () => {
 
   return (
     <div>
-      <div className='row'>
-        {pizzas.map((pizza) => (
-          <div className='col-md-4'>
-            <div>
-              <Pizza pizza={pizza} />
+      <div className='row justify-content-center'>
+        {loading ? (
+          <h1>Loading...</h1>
+        ) : error ? (
+          <h1>Something went wrong</h1>
+        ) : (
+          pizzas.map((pizza) => (
+            <div className='col-md-3 m-3'>
+              <div key={pizza.id}>
+                <Pizza pizza={pizza} />
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
