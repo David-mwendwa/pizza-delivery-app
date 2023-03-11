@@ -20,3 +20,11 @@ code {
   color: black !important;
   opacity: 0.5;
 }
+
+h1 {
+  font-size: 20px !important;
+}
+
+.flex-container {
+  display: flex !important;
+}
