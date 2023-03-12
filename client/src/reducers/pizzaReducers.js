@@ -4,7 +4,7 @@ import {
   GET_PIZZAS_SUCCESS,
 } from '../constants/pizzaConstants';
 
-export const getAllPizzasReducer = (state = {}, action) => {
+export const getAllPizzasReducer = (state = { pizzas: [] }, action) => {
   switch (action.type) {
     case GET_PIZZAS_REQUEST:
       return {
