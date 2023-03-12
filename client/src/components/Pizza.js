@@ -32,7 +32,7 @@ const Pizza = ({ pizza }) => {
             name='variant'
             value={variant}
             onChange={handleChange}>
-            {pizza.variants.map((variant) => (
+            {pizza.varients.map((variant) => (
               <option value={variant}>{variant}</option>
             ))}
           </select>

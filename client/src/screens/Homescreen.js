@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllPizzas } from '../actions/pizzaActions';
+import { getAllPizzas } from '../redux/actions/pizzaActions';
 import Pizza from '../components/Pizza';
 // import pizzas from '../pizzadata';
 
@@ -22,7 +22,7 @@ const Homescreen = () => {
           <h1>Something went wrong</h1>
         ) : (
           pizzas.map((pizza) => (
-            <div className='col-md-4 col-sm-12'>
+            <div className='col-lg-4 col-md-6 col-sm-12'>
               <div key={pizza._id}>
                 <Pizza pizza={pizza} />
               </div>
