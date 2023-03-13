@@ -11,6 +11,10 @@ const Pizza = ({ pizza }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const addToCart = () => {
+    
+  }
+
   return (
     <div
       style={{ margin: '70px' }}
@@ -58,7 +62,7 @@ const Pizza = ({ pizza }) => {
           </h1>
         </div>
         <div className='m-1 w-100'>
-          <button className='btn'>ADD TO CART</button>
+          <button className='btn' onClick={addToCart}>ADD TO CART</button>
         </div>
       </div>
 
