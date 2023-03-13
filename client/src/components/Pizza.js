@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../redux/actions/cartActions';
 import useInput from '../utils/useInput';
 
 const Pizza = ({ pizza }) => {
+  const dispatch = useDispatch();
   const { values, handleChange } = useInput({ quantity: 1, variant: 'small' });
   const { quantity, variant } = values;
 
@@ -11,9 +14,9 @@ const Pizza = ({ pizza }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const addToCart = () => {
-    
-  }
+  const handleAddToCart = () => {
+    dispatch(addToCart(pizza, quantity, variant));
+  };
 
   return (
     <div
@@ -62,7 +65,9 @@ const Pizza = ({ pizza }) => {
           </h1>
         </div>
         <div className='m-1 w-100'>
-          <button className='btn' onClick={addToCart}>ADD TO CART</button>
+          <button className='btn' onClick={handleAddToCart}>
+            ADD TO CART
+          </button>
         </div>
       </div>
 
