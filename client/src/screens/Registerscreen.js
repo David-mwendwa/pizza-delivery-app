@@ -1,7 +1,10 @@
 import React from 'react';
 import useInput from '../utils/useInput';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser } from '../redux/actions/userActions';
 
 const Registerscreen = () => {
+  const dispatch = useDispatch();
   const { values, handleChange, resetValues } = useInput({
     name: '',
     email: '',
@@ -11,8 +14,7 @@ const Registerscreen = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ values });
-
+    dispatch(registerUser(values));
     resetValues();
   };
 

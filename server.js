@@ -4,12 +4,14 @@ const app = express();
 require('dotenv').config();
 
 const pizzasRouter = require('./routes/pizzasRoute');
+const userRouter = require('./routes/userRoutes');
 
 app.get('/', (req, res) => {
   res.json({ success: true, page: 'Homepage' });
 });
 
-app.use('/pizzas', pizzasRouter);
+app.use('/api/pizzas', pizzasRouter);
+app.use('/api/user', userRouter);
 
 app.use('*', (req, res) => {
   res.send('Route does not exist');
