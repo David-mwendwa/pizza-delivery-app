@@ -51,6 +51,11 @@ select {
   color: red;
 }
 
+input {
+  margin-bottom: 10px !important;
+  box-shadow: none !important;
+}
+
 /* LOADER */
 .lds-spinner {
   width: 120px;
