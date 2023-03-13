@@ -44,12 +44,12 @@ const Cartscreen = () => {
                 <img
                   src={item.image}
                   alt={item.name}
-                  style={{ height: '80px', width: '8px' }}
+                  style={{ height: '80px', width: '80px' }}
                 />
               </div>
               <div className='m-1 w-100'>
                 <i
-                  className='fa fa-tras mt-5'
+                  className='fa fa-trash mt-5'
                   aria-hidden='true'
                   onClick={() => dispatch(deleteFromCart(item))}></i>
               </div>
