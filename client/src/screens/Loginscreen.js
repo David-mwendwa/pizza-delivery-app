@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import useInput from '../utils/useInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../redux/actions/userActions';
+import Loader from '../components/Loader';
+import Success from '../components/Success';
+import Error from '../components/Error';
 
 const Loginscreen = () => {
   const dispatch = useDispatch();
@@ -16,9 +19,9 @@ const Loginscreen = () => {
     }
   });
 
-  const userLoginState = useSelector((state) => state.userLogin);
-  //const {  } = userLoginState;
-  console.log({ userLoginState });
+  const loginState = useSelector((state) => state.userLogin);
+  const { loading, success, error } = loginState;
+  console.log({ loginState });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,19 +31,13 @@ const Loginscreen = () => {
   return (
     <div>
       <div className='row justify-content-center mt-5'>
-        <div className='col-md-5'>
+        <div className='col-md-5 shadow p-3 mb-5 bg-white rounded'>
           <h2 className='text-center' style={{ fontSize: '35px' }}>
             LOGIN
           </h2>
-          {/* {error ? (
-            <div class='alert alert-danger text-center'>{error}</div>
-          ) :
-            success && success ? (
-            <div class='alert alert-success text-center'>{success}</div>
-            ) :
-              (
-            <></>
-          )} */}
+          {loading && <Loader />}
+          {success && <Success message={'Login successful'} />}
+          {error && <Error message={error} />}
           <form onSubmit={handleSubmit}>
             <input
               type='email'
@@ -63,6 +60,9 @@ const Loginscreen = () => {
             <button type='submit' className='btn'>
               LOGIN
             </button>
+            <p>
+              Are you new? <a href='/register'>Register</a>{' '}
+            </p>
           </form>
         </div>
       </div>

@@ -33,7 +33,7 @@ const Navbar = () => {
                   opacity: '.5',
                   textDecoration: 'none',
                 }}
-                class='dropdown-toggle'
+                className='dropdown-toggle'
                 href='#!'
                 role='button'
                 id='dropdownMenuLink'
@@ -48,12 +48,12 @@ const Navbar = () => {
                 <a className='dropdown-item' href='/orders'>
                   Orders
                 </a>
-                <a
+                <span
+                  role='button'
                   className='dropdown-item'
-                  href='#!'
                   onClick={() => dispatch(logout())}>
                   Logout
-                </a>
+                </span>
               </div>
             </div>
           ) : (

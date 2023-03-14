@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import useInput from '../utils/useInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../redux/actions/userActions';
+import Loader from '../components/Loader';
+import Success from '../components/Success';
+import Error from '../components/Error';
 
 const Registerscreen = () => {
   const dispatch = useDispatch();
@@ -12,12 +15,15 @@ const Registerscreen = () => {
     passwordConfirm: '',
   });
 
-  const userRegisterState = useSelector((state) => state.userRegister);
-  //const { success = false, error = null } = userRegisterState;
-  console.log({ userRegisterState });
+  const registerState = useSelector((state) => state.userRegister);
+  const { loading, success, error } = registerState;
+  console.log({ registerState });
 
-  useEffect(() => {}, [dispatch]);
-
+  // useEffect(() => {
+  //   if (success || localStorage.getItem('currentUser')) {
+  //     window.location.href = '/';
+  //   }
+  // }, [success]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,19 +34,13 @@ const Registerscreen = () => {
   return (
     <div>
       <div className='row justify-content-center mt-5'>
-        <div className='col-md-5'>
+        <div className='col-md-5 shadow p-3 mb-5 bg-white rounded'>
           <h2 className='text-center' style={{ fontSize: '35px' }}>
             Register
           </h2>
-          {/* {error ? (
-            <div class='alert alert-danger text-center'>{error}</div>
-          ) :
-            success && success ? (
-            <div class='alert alert-success text-center'>{success}</div>
-            ) :
-              (
-            <></>
-          )} */}
+          {loading && <Loader />}
+          {success && <Success message={'Registered successfully'} />}
+          {error && <Error message={error} />}
           <form onSubmit={handleSubmit}>
             <input
               type='text'
@@ -81,6 +81,9 @@ const Registerscreen = () => {
             <button type='submit' className='btn'>
               REGISTER
             </button>
+            <p>
+              Already a user? <a href='/login'>Login</a>
+            </p>
           </form>
         </div>
       </div>
