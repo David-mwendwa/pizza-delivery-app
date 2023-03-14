@@ -5,10 +5,10 @@ export const registerUser = async (req, res) => {
   console.log({ user_r: req.body });
   const { name, email, password } = req.body;
   const userExists = await User.findOne({ email });
-  // console.log({ userExists });
-  // if (userExists) {
-  //   throw new BadRequestError('Email is already taken');
-  // }
+  console.log({ userExists });
+  if (userExists) {
+    throw new BadRequestError('Email is already taken');
+  }
   const user = await User.create({ name, email, password });
   console.log({ user });
   user.save();
