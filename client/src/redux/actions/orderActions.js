@@ -8,7 +8,7 @@ import {
 export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
   dispatch({ type: PLACE_ORDER_REQUEST });
 
-  const currentUser = getState().useLogin.currentUser;
+  const currentUser = getState().userLogin.currentUser;
   const cartItems = getState().cartReducer.cartItems;
 
   try {
