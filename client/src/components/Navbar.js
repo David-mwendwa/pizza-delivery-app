@@ -1,9 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../redux/actions/userActions';
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const cartState = useSelector((state) => state.cartReducer);
   const { currentUser } = useSelector((state) => state.userLogin);
+  // console.log({ currentUser });
 
   return (
     <nav className='navbar navbar-expand-lg navbar-light bg-light shadow'>
@@ -37,7 +40,7 @@ const Navbar = () => {
                 data-toggle='dropdown'
                 aria-haspopup='true'
                 aria-expanded='false'>
-                {currentUser.name || 'user'}
+                {currentUser.name}
               </a>
               <div
                 className='dropdown-menu'
@@ -45,7 +48,10 @@ const Navbar = () => {
                 <a className='dropdown-item' href='/orders'>
                   Orders
                 </a>
-                <a className='dropdown-item' href='/logout'>
+                <a
+                  className='dropdown-item'
+                  href='#!'
+                  onClick={() => dispatch(logout())}>
                   Logout
                 </a>
               </div>
