@@ -1,8 +1,3 @@
-// require('express-async-errors');
-// const mongoose = require('mongoose');
-// const express = require('express');
-// const app = express();
-// require('dotenv').config();
 import 'express-async-errors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -17,10 +12,6 @@ import pizzasRouter from './routes/pizzasRoute.js';
 import userRouter from './routes/userRoutes.js';
 
 app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.json({ success: true, page: 'Homepage' });
-});
 
 app.use('/api/v1/pizzas', pizzasRouter);
 app.use('/api/v1/users', userRouter);
