@@ -1,7 +1,11 @@
+require('express-async-errors');
 const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
 require('dotenv').config();
+
+const notFoundMiddleware = require('./middleware/not-found');
+const errorHandlerMiddleware = require('./middleware/error-handler');
 
 const pizzasRouter = require('./routes/pizzasRoute');
 const userRouter = require('./routes/userRoutes');
@@ -13,9 +17,9 @@ app.get('/', (req, res) => {
 app.use('/api/pizzas', pizzasRouter);
 app.use('/api/user', userRouter);
 
-app.use('*', (req, res) => {
-  res.send('Route does not exist');
-});
+// use error middleware
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 // mongoDB connection
 mongoose
