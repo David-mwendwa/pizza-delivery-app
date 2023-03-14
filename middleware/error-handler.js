@@ -44,7 +44,9 @@ const handleProductionErrors = async (err, req, res, next) => {
     defaultError.statusCode = StatusCodes.UNAUTHORIZED;
     defaultError.message = `Token expired. Please login again.`;
   }
-  res.status(defaultError.statusCode).json({ message: defaultError.message });
+  res
+    .status(defaultError.statusCode)
+    .json({ success: false, message: defaultError.message });
 };
 
 const errorHandlerMiddleware = (err, req, res, next) => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useInput from '../utils/useInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../redux/actions/userActions';
@@ -11,6 +11,13 @@ const Registerscreen = () => {
     password: '',
     passwordConfirm: '',
   });
+
+  const userRegisterState = useSelector((state) => state.userRegister);
+  //const { success = false, error = null } = userRegisterState;
+  console.log({ userRegisterState });
+
+  useEffect(() => {}, [dispatch]);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,6 +32,15 @@ const Registerscreen = () => {
           <h2 className='text-center' style={{ fontSize: '35px' }}>
             Register
           </h2>
+          {/* {error ? (
+            <div class='alert alert-danger text-center'>{error}</div>
+          ) :
+            success && success ? (
+            <div class='alert alert-success text-center'>{success}</div>
+            ) :
+              (
+            <></>
+          )} */}
           <form onSubmit={handleSubmit}>
             <input
               type='text'

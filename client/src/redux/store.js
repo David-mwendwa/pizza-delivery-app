@@ -6,19 +6,20 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import devToolsEnhancer from 'remote-redux-devtools';
 import { getAllPizzasReducer } from './reducers/pizzaReducers';
 import { cartReducer } from './reducers/cartReducer';
-import { userRegisterReducer } from './reducers/userReducer';
+import { userLoginReducer, userRegisterReducer } from './reducers/userReducer';
 
 const finalReducer = combineReducers({
   getAllPizzasReducer: getAllPizzasReducer,
   cartReducer: cartReducer,
-  // userRegister: userRegisterReducer,
+  userRegister: userRegisterReducer,
+  userLogin: userLoginReducer,
 });
 
 const cartItems = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
   : [];
 
-const initialState = { cartReducer: { cartItems } };
+const initialState = { cartReducer: { cartItems }, userRegister: null };
 const composeEnhancers = composeWithDevTools({});
 const store = createStore(
   finalReducer,
