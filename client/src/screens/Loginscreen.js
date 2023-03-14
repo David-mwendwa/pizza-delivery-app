@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useInput from '../utils/useInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../redux/actions/userActions';
@@ -8,6 +8,12 @@ const Loginscreen = () => {
   const { values, handleChange } = useInput({
     email: '',
     password: '',
+  });
+
+  useEffect(() => {
+    if (localStorage.getItem('currentUser')) {
+      window.location.href = '/';
+    }
   });
 
   const userLoginState = useSelector((state) => state.userLogin);
