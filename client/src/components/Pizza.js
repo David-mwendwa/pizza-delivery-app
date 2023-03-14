@@ -40,7 +40,9 @@ const Pizza = ({ pizza }) => {
             value={variant}
             onChange={handleChange}>
             {pizza.varients.map((variant) => (
-              <option value={variant}>{variant}</option>
+              <option key={variant} value={variant}>
+                {variant}
+              </option>
             ))}
           </select>
         </div>
@@ -52,7 +54,9 @@ const Pizza = ({ pizza }) => {
             value={quantity}
             onChange={handleChange}>
             {[...Array(10).keys()].map((x, i) => (
-              <option value={i + 1}>{i + 1}</option>
+              <option key={i} value={i + 1}>
+                {i + 1}
+              </option>
             ))}
           </select>
         </div>

@@ -15,7 +15,7 @@ const Cartscreen = () => {
         <div className='col-md-6'>
           <h2 style={{ fontSize: '40px' }}>My Cart</h2>
           {cartItems.map((item) => (
-            <div className='flex-container'>
+            <div className='flex-container' key={item._id}>
               <div className='text-left m-1 w-100'>
                 <h1>
                   {item.name} [{item.variant}]

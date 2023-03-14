@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllPizzas } from '../redux/actions/pizzaActions';
 import Pizza from '../components/Pizza';
 import Loader from '../components/Loader';
-// import pizzas from '../pizzadata';
 
 const Homescreen = () => {
   const dispatch = useDispatch();
@@ -22,8 +21,8 @@ const Homescreen = () => {
           <h1>Something went wrong</h1>
         ) : (
           pizzas.map((pizza) => (
-            <div className='col-lg-4 col-md-6 col-sm-12'>
-              <div key={pizza._id}>
+            <div key={pizza._id} className='col-lg-4 col-md-6 col-sm-12'>
+              <div>
                 <Pizza pizza={pizza} />
               </div>
             </div>
