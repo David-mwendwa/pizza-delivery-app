@@ -4,7 +4,7 @@ import {
   REGISTER_USER_FAIL,
 } from '../constants/userConstants';
 
-export const registerUserReducer = (state = {}, action) => {
+export const userRegisterReducer = (state = {}, action) => {
   switch (action.type) {
     case REGISTER_USER_REQUEST:
       return {
@@ -12,6 +12,7 @@ export const registerUserReducer = (state = {}, action) => {
       };
     case REGISTER_USER_SUCCESS:
       return {
+        ...state,
         loading: false,
         success: true,
       };

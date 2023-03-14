@@ -3,7 +3,7 @@ import { ADD_TO_CART, DELETE_FROM_CART } from '../constants/cartConstants';
 export const addToCart =
   (pizza, quantity, variant) => async (dispatch, getState) => {
     let cartItem = {
-      _id: pizza.id,
+      _id: pizza._id,
       name: pizza.name,
       image: pizza.image,
       variant: variant,

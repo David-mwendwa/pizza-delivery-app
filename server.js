@@ -19,7 +19,7 @@ app.use('*', (req, res) => {
 
 // mongoDB connection
 mongoose
-  .connect(process.env.MONGO_URI_LOCAL)
+  .connect(process.env.MONGO_URI)
   .then(() => console.log('Connected to mongoDB'))
   .catch((err) => console.log(`Could not connect to the database`, err));
 

@@ -26,17 +26,17 @@ const Cartscreen = () => {
                 </h1>
                 <h1 style={{ display: 'inline' }}>Quantity: </h1>
                 <i
-                  className='fa fa-plus'
-                  aria-hidden='true'
-                  onClick={() =>
-                    dispatch(addToCart(item, item.quantity + 1, item.variant))
-                  }></i>
-                <b>{item.quantity}</b>
-                <i
                   className='fa fa-minus'
                   aria-hidden='true'
                   onClick={() =>
                     dispatch(addToCart(item, item.quantity - 1, item.variant))
+                  }></i>
+                <b>{item.quantity}</b>
+                <i
+                  className='fa fa-plus'
+                  aria-hidden='true'
+                  onClick={() =>
+                    dispatch(addToCart(item, item.quantity + 1, item.variant))
                   }></i>
                 <hr />
               </div>
