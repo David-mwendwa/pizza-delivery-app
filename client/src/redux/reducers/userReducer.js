@@ -7,6 +7,7 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGOUT,
 } from '../constants/userConstants';
+
 export const userRegisterReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_REGISTER_REQUEST:

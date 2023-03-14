@@ -7,12 +7,14 @@ import devToolsEnhancer from 'remote-redux-devtools';
 import { getAllPizzasReducer } from './reducers/pizzaReducers';
 import { cartReducer } from './reducers/cartReducer';
 import { userLoginReducer, userRegisterReducer } from './reducers/userReducer';
+import { placeOrderReducer } from './reducers/orderReducer';
 
 const finalReducer = combineReducers({
   getAllPizzasReducer: getAllPizzasReducer,
   cartReducer: cartReducer,
   userRegister: userRegisterReducer,
   userLogin: userLoginReducer,
+  placeOrder: placeOrderReducer,
 });
 
 const cartItems = localStorage.getItem('cartItems')
