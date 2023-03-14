@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const pizzaSchema = new mongoose.Schema(
   {
@@ -7,15 +7,12 @@ const pizzaSchema = new mongoose.Schema(
       required: [true, 'Please enter a name'],
       trim: true,
     },
-    variants: [
+    varients: [
       {
         type: String,
       },
     ],
-    prices: {
-      type: String,
-      required: [true, 'Please enter a price'],
-    },
+    prices: [],
     category: {
       type: String,
       required: [true, 'Please select a category'],
@@ -37,4 +34,4 @@ const pizzaSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model('Pizza', pizzaSchema);
+export default mongoose.model('Pizza', pizzaSchema);

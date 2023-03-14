@@ -2,7 +2,8 @@
   "name": "pizza-delivery",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\"",
     "client": "npm start --prefix client",

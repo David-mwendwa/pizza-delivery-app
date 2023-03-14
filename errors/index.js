@@ -1,11 +1,6 @@
-const BadRequestError = require('./bad-request.js');
-const NotFoundError = require('./not-found.js');
-const UnauthenticatedError = require('./unauthenticated.js');
-const ForbiddenError = require('./forbidden.js');
+import BadRequestError from './bad-request.js';
+import NotFoundError from './not-found.js';
+import UnauthenticatedError from './unauthenticated.js';
+import ForbiddenError from './forbidden.js';
 
-module.exports = {
-  BadRequestError,
-  NotFoundError,
-  UnauthenticatedError,
-  ForbiddenError,
-};
+export { BadRequestError, NotFoundError, UnauthenticatedError, ForbiddenError };

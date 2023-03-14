@@ -1,4 +1,4 @@
-const { StatusCodes } = require('http-status-codes');
+import { StatusCodes } from 'http-status-codes';
 
 const handleDevelopmentErrors = (err, res) => {
   err.statusCode = err.statusCode || 500;
@@ -56,4 +56,4 @@ const errorHandlerMiddleware = async (err, req, res, next) => {
   }
 };
 
-module.exports = errorHandlerMiddleware;
+export default errorHandlerMiddleware;

@@ -1,12 +1,6 @@
-const Pizza = require('../models/pizzaModel');
+import Pizza from '../models/pizzaModel.js';
 
-const getAllPizzas = async (req, res) => {
-  try {
-    let pizzas = await Pizza.find({});
-    res.json({ success: true, pizzas });
-  } catch (error) {
-    console.log(error);
-  }
+export const getAllPizzas = async (req, res) => {
+  let pizzas = await Pizza.find({});
+  res.json({ success: true, pizzas });
 };
-
-module.exports = { getAllPizzas };

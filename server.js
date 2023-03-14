@@ -1,21 +1,29 @@
-require('express-async-errors');
-const mongoose = require('mongoose');
-const express = require('express');
+// require('express-async-errors');
+// const mongoose = require('mongoose');
+// const express = require('express');
+// const app = express();
+// require('dotenv').config();
+import 'express-async-errors';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import express from 'express';
 const app = express();
-require('dotenv').config();
+dotenv.config();
 
-const notFoundMiddleware = require('./middleware/not-found');
-const errorHandlerMiddleware = require('./middleware/error-handler');
+import notFoundMiddleware from './middleware/not-found.js';
+import errorHandlerMiddleware from './middleware/error-handler.js';
 
-const pizzasRouter = require('./routes/pizzasRoute');
-const userRouter = require('./routes/userRoutes');
+import pizzasRouter from './routes/pizzasRoute.js';
+import userRouter from './routes/userRoutes.js';
+
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.json({ success: true, page: 'Homepage' });
 });
 
-app.use('/api/pizzas', pizzasRouter);
-app.use('/api/user', userRouter);
+app.use('/api/v1/pizzas', pizzasRouter);
+app.use('/api/v1/users', userRouter);
 
 // use error middleware
 app.use(notFoundMiddleware);

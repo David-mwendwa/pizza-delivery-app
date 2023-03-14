@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const validator = require('validator');
+import mongoose from 'mongoose';
+import validator from 'validator';
 
 const userSchema = new mongoose.Schema(
   {
@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema(
     },
     passwordConfirm: {
       type: String,
-      required: [true, 'Please confirm your password'],
+      // required: [true, 'Please confirm your password'],
       trim: true,
       validate: {
         // This only works on .create() or .save()
@@ -39,4 +39,4 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('User', userSchema);
+export default mongoose.model('Users', userSchema);

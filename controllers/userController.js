@@ -1,19 +1,16 @@
-const User = require('../models/userModel');
+import User from '../models/userModel.js';
+import { BadRequestError } from '../errors/index.js';
 
-const registerUser = async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
-    const userExists = await User.findOne({ email });
-    if (userExists) {
-      res.status(400).json({ success: false, error: 'email already in use!' });
-    }
-    const user = await User.create({ name, email, password });
-
-    user.save();
-    res.json({ success: true, user });
-  } catch (error) {
-    res.status(400).json({ success: false, error: error });
-  }
+export const registerUser = async (req, res) => {
+  console.log({ user_r: req.body });
+  const { name, email, password } = req.body;
+  const userExists = await User.findOne({ email });
+  // console.log({ userExists });
+  // if (userExists) {
+  //   throw new BadRequestError('Email is already taken');
+  // }
+  const user = await User.create({ name, email, password });
+  console.log({ user });
+  user.save();
+  res.json({ success: true, user: req.body });
 };
-
-module.exports = { registerUser };
