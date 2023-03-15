@@ -48,7 +48,8 @@ export const login = (user) => async (dispatch) => {
   }
 };
 
-export const logout = () => (dispatch) => {
+export const logout = () => async (dispatch) => {
+  await axios.get('/api/v1/users/logout');
   localStorage.removeItem('currentUser');
   dispatch({ type: USER_LOGOUT });
 };
