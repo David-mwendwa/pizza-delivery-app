@@ -3,6 +3,9 @@ import {
   PLACE_ORDER_REQUEST,
   PLACE_ORDER_SUCCESS,
   PLACE_ORDER_FAIL,
+  GET_MY_ORDERS_REQUEST,
+  GET_MY_ORDERS_SUCCESS,
+  GET_MY_ORDERS_FAIL,
 } from '../constants/orderConstants';
 
 export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
@@ -22,6 +25,27 @@ export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: PLACE_ORDER_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+// Get orders for the currently logged in user
+export const getMyOrders = () => async (dispatch, getState) => {
+  dispatch({ type: GET_MY_ORDERS_REQUEST });
+
+  const currentUser = getState().userLogin.currentUser;
+  try {
+    const { data } = await axios.get('/api/v1/orders/me', {
+      userId: currentUser._id,
+    });
+    dispatch({ type: GET_MY_ORDERS_SUCCESS, payload: data.orders });
+  } catch (error) {
+    dispatch({
+      type: GET_MY_ORDERS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

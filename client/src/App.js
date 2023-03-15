@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Cartscreen from './screens/Cartscreen';
 import Homescreen from './screens/Homescreen';
 import Loginscreen from './screens/Loginscreen';
+import Orderscreen from './screens/Orderscreen';
 import Registerscreen from './screens/Registerscreen';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path='/cart' element={<Cartscreen />} exact />
           <Route path='/register' element={<Registerscreen />} exact />
           <Route path='/login' element={<Loginscreen />} exact />
+          <Route path='/orders' element={<Orderscreen />} exact />
         </Routes>
       </Router>
     </div>

@@ -7,6 +7,7 @@ const stripe = new Stripe(
 import Order from '../models/orderModel.js';
 
 export const placeOrder = async (req, res) => {
+  // when using authentication, currentUser isn't really needed - you can access the user from the req
   const { token, subtotal, currentUser, cartItems } = req.body;
 
   const customer = await stripe.customers.create({
