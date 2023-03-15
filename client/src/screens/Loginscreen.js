@@ -21,7 +21,6 @@ const Loginscreen = () => {
 
   const loginState = useSelector((state) => state.userLogin);
   const { loading, success, error } = loginState;
-  console.log({ loginState });
 
   const handleSubmit = (e) => {
     e.preventDefault();

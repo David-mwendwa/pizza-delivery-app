@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import useInput from '../utils/useInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../redux/actions/userActions';
@@ -17,7 +17,6 @@ const Registerscreen = () => {
 
   const registerState = useSelector((state) => state.userRegister);
   const { loading, success, error } = registerState;
-  console.log({ registerState });
 
   // useEffect(() => {
   //   if (success || localStorage.getItem('currentUser')) {

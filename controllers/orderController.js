@@ -4,6 +4,7 @@ import { BadRequestError } from '../errors/index.js';
 const stripe = new Stripe(
   'sk_test_51Imu8iKOyrEmScQW3cepN6ppj7EXKrrhf3VTtEkBihn9Kt2o8S5PH4Or5w7VARuWOmF6HTsbU8LrbiT2g6oGFnid00mvREAaRm'
 );
+import Order from '../models/orderModel.js';
 
 export const placeOrder = async (req, res) => {
   const { token, subtotal, currentUser, cartItems } = req.body;
@@ -26,5 +27,24 @@ export const placeOrder = async (req, res) => {
   if (!payment) {
     throw new BadRequestError('Payment failed!');
   }
+
+  const order = new Order({
+    name: currentUser.name,
+    email: currentUser.email,
+    userId: currentUser._id,
+    // user: req.user._id,
+    orderItems: cartItems,
+    orderAmount: subtotal,
+    shippingAddress: {
+      street: token.card.address_line1,
+      city: token.card.address_city,
+      country: token.card.address_country,
+      pincode: token.card.address_zip,
+    },
+    transactionId: payment.source.id,
+    paidAt: Date.now(),
+  });
+  order.save();
+
   res.json({ success: true, message: 'Payment successful' });
 };

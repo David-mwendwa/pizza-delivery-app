@@ -18,7 +18,6 @@ export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
       currentUser,
       cartItems,
     });
-    console.log({ data });
     dispatch({ type: PLACE_ORDER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
