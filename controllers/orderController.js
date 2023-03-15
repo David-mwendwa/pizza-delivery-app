@@ -51,7 +51,9 @@ export const placeOrder = async (req, res) => {
 };
 
 export const getMyOrders = async (req, res) => {
-  const orders = await Order.find({ userId: req.user.userId }); // with authention, search orders by userId
+  const orders = await Order.find({ userId: req.user.userId }).sort({
+    _id: -1,
+  });
   if (!orders) {
     throw new NotFoundError('No orders available');
   }
