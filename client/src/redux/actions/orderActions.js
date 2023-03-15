@@ -34,15 +34,12 @@ export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
 };
 
 // Get orders for the currently logged in user
-export const getMyOrders = () => async (dispatch, getState) => {
+export const getMyOrders = () => async (dispatch) => {
   dispatch({ type: GET_MY_ORDERS_REQUEST });
 
-  const currentUser = getState().userLogin.currentUser;
   try {
-    const { data } = await axios.get('/api/v1/orders/me', {
-      userId: currentUser._id,
-    });
-    dispatch({ type: GET_MY_ORDERS_SUCCESS, payload: data.orders });
+    const { data } = await axios.get('/api/v1/orders/me');
+    dispatch({ type: GET_MY_ORDERS_SUCCESS, payload: data.data });
   } catch (error) {
     dispatch({
       type: GET_MY_ORDERS_FAIL,

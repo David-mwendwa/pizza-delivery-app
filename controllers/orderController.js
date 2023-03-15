@@ -49,3 +49,8 @@ export const placeOrder = async (req, res) => {
 
   res.json({ success: true, message: 'Payment successful' });
 };
+
+export const getMyOrders = async (req, res) => {
+  const orders = await Order.find({}); // with authention, search orders by userId
+  res.json({ success: true, data: { orders } });
+};
