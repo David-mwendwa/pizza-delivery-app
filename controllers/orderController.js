@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import Stripe from 'stripe';
-import { BadRequestError } from '../errors/index.js';
+import { BadRequestError, NotFoundError } from '../errors/index.js';
 const stripe = new Stripe(
   'sk_test_51Imu8iKOyrEmScQW3cepN6ppj7EXKrrhf3VTtEkBihn9Kt2o8S5PH4Or5w7VARuWOmF6HTsbU8LrbiT2g6oGFnid00mvREAaRm'
 );
@@ -51,6 +51,9 @@ export const placeOrder = async (req, res) => {
 };
 
 export const getMyOrders = async (req, res) => {
-  const orders = await Order.find({}); // with authention, search orders by userId
+  const orders = await Order.find({ userId: req.user.userId }); // with authention, search orders by userId
+  if (!orders) {
+    throw new NotFoundError('No orders available');
+  }
   res.json({ success: true, data: { orders } });
 };

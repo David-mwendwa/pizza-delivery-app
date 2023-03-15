@@ -1,4 +1,5 @@
 import 'express-async-errors';
+import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import express from 'express';
@@ -12,6 +13,7 @@ import pizzasRouter from './routes/pizzasRoute.js';
 import userRouter from './routes/userRoutes.js';
 import orderRouter from './routes/ordersRoute.js';
 
+app.use(cookieParser());
 app.use(express.json());
 
 app.use('/api/v1/pizzas', pizzasRouter);

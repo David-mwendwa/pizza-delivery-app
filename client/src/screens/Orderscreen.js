@@ -4,14 +4,16 @@ import { getMyOrders } from '../redux/actions/orderActions';
 
 const Orderscreen = () => {
   const dispatch = useDispatch();
+  const getMyOrdersState = useSelector((state) => state.getMyOrders);
+  const { loading, error, orders } = getMyOrdersState;
 
   useEffect(() => {
     dispatch(getMyOrders());
-  });
+  }, [dispatch]);
 
   return (
     <div>
-      <h2 style={{ fontSize: '35px' }}>My Orders</h2>
+      <h2 style={{ fontSize: '35px' }}>My Orders ({orders.length})</h2>
     </div>
   );
 };
