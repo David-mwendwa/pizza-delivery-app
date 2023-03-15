@@ -5,6 +5,7 @@ import { login } from '../redux/actions/userActions';
 import Loader from '../components/Loader';
 import Success from '../components/Success';
 import Error from '../components/Error';
+import { Link } from 'react-router-dom';
 
 const Loginscreen = () => {
   const dispatch = useDispatch();
@@ -60,7 +61,7 @@ const Loginscreen = () => {
               LOGIN
             </button>
             <p>
-              Are you new? <a href='/register'>Register</a>{' '}
+              Are you new? <Link to='/register'>Register</Link>{' '}
             </p>
           </form>
         </div>

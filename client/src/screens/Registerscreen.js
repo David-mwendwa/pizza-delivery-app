@@ -5,6 +5,7 @@ import { registerUser } from '../redux/actions/userActions';
 import Loader from '../components/Loader';
 import Success from '../components/Success';
 import Error from '../components/Error';
+import { Link } from 'react-router-dom';
 
 const Registerscreen = () => {
   const dispatch = useDispatch();
@@ -81,7 +82,7 @@ const Registerscreen = () => {
               REGISTER
             </button>
             <p>
-              Already a user? <a href='/login'>Login</a>
+              Already a user? <Link to='/login'>Login</Link>
             </p>
           </form>
         </div>

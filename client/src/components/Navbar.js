@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { logout } from '../redux/actions/userActions';
 
 const Navbar = () => {
@@ -10,9 +11,9 @@ const Navbar = () => {
 
   return (
     <nav className='navbar navbar-expand-lg navbar-light bg-light shadow'>
-      <a className='navbar-brand' href='/'>
+      <Link className='navbar-brand' to='/'>
         PIZZA DELIVERY
-      </a>
+      </Link>
       <button
         className='navbar-toggler'
         type='button'
@@ -27,27 +28,27 @@ const Navbar = () => {
         <ul className='navbar-nav ml-auto'>
           {currentUser ? (
             <div className='dropdown mt-2'>
-              <a
+              <Link
                 style={{
                   color: 'black',
                   opacity: '.5',
                   textDecoration: 'none',
                 }}
                 className='dropdown-toggle'
-                href='#!'
+                to='#!'
                 role='button'
                 id='dropdownMenuLink'
                 data-toggle='dropdown'
                 aria-haspopup='true'
                 aria-expanded='false'>
                 {currentUser.name}
-              </a>
+              </Link>
               <div
                 className='dropdown-menu'
                 aria-labelledby='dropdownMenuButton'>
-                <a className='dropdown-item' href='/orders'>
+                <Link className='dropdown-item' to='/orders'>
                   Orders
-                </a>
+                </Link>
                 <span
                   role='button'
                   className='dropdown-item'
@@ -58,19 +59,19 @@ const Navbar = () => {
             </div>
           ) : (
             <li className='nav-item'>
-              <a className='nav-link' href='/login'>
+              <Link className='nav-link' to='/login'>
                 Login
-              </a>
+              </Link>
             </li>
           )}
 
           <li className='nav-item'>
-            <a className='nav-link' href='/cart'>
+            <Link className='nav-link' to='/cart'>
               Cart{' '}
               <span className='badge badge-secondary'>
                 {cartState.cartItems.length}
               </span>
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

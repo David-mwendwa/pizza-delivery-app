@@ -9,8 +9,8 @@ import Registerscreen from './screens/Registerscreen';
 function App() {
   return (
     <div className='App'>
-      <Navbar />
       <Router>
+        <Navbar />
         <Routes>
           <Route path='/' element={<Homescreen />} exact />
           <Route path='/cart' element={<Cartscreen />} exact />
