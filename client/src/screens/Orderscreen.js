@@ -52,7 +52,7 @@ const ListOrders = () => {
   };
 
   return (
-    <>
+    <div>
       <h2
         className='text-center text-decoration-underline'
         style={{ fontSize: '25px', opacity: '.7' }}>
@@ -70,7 +70,7 @@ const ListOrders = () => {
           hover
         />
       )}
-    </>
+    </div>
   );
 };
 

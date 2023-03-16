@@ -16,7 +16,7 @@ const Homescreen = () => {
   }, [dispatch]);
 
   return (
-    <div className='container'>
+    <>
       {loading && <Loader />}
       <Filter />
       <div className='row justify-content-center'>
@@ -32,7 +32,7 @@ const Homescreen = () => {
           ))
         )}
       </div>
-    </div>
+    </>
   );
 };
 

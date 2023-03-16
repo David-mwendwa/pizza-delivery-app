@@ -12,14 +12,16 @@ function App() {
     <div className='App'>
       <Router>
         <Navbar />
-        <Routes>
-          <Route path='/' element={<Homescreen />} exact />
-          <Route path='/cart' element={<Cartscreen />} exact />
-          <Route path='/register' element={<Registerscreen />} exact />
-          <Route path='/login' element={<Loginscreen />} exact />
-          <Route path='/orders' element={<Orderscreen />} exact />
-          <Route path='/orders/:id' element={<SingleOrderscreen />} exact />
-        </Routes>
+        <div className='container'>
+          <Routes>
+            <Route path='/' element={<Homescreen />} exact />
+            <Route path='/cart' element={<Cartscreen />} exact />
+            <Route path='/register' element={<Registerscreen />} exact />
+            <Route path='/login' element={<Loginscreen />} exact />
+            <Route path='/orders' element={<Orderscreen />} exact />
+            <Route path='/orders/:id' element={<SingleOrderscreen />} exact />
+          </Routes>
+        </div>
       </Router>
     </div>
   );

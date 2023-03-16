@@ -57,7 +57,7 @@ const Loginscreen = () => {
               className='form-control'
               required
             />
-            <button type='submit' className='btn'>
+            <button type='submit' className='btn btn-secondary'>
               LOGIN
             </button>
             <p>
