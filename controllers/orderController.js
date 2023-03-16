@@ -59,3 +59,11 @@ export const getMyOrders = async (req, res) => {
   }
   res.json({ success: true, data: { orders } });
 };
+
+export const getSingleOrder = async (req, res) => {
+  const order = await Order.findOne({ _id: req.params.id });
+  if (!order) {
+    throw new NotFoundError('No order with that ID');
+  }
+  res.json({ success: true, data: { data: order } });
+};

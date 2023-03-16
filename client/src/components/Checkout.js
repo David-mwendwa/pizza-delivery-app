@@ -22,7 +22,7 @@ const Checkout = ({ subtotal }) => {
       {error && <Error message={error} />}
       {success && <Success message={'Your order placed successfully'} />}
 
-      !<StripeCheckout
+      <StripeCheckout
         amount={subtotal} // /100 if the subtotal is in Ksh
         shippingAddress
         token={tokenHandler}
