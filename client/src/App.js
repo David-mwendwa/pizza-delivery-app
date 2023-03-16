@@ -5,6 +5,7 @@ import Homescreen from './screens/Homescreen';
 import Loginscreen from './screens/Loginscreen';
 import Orderscreen from './screens/Orderscreen';
 import Registerscreen from './screens/Registerscreen';
+import SingleOrderscreen from './screens/SingleOrderscreen';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/register' element={<Registerscreen />} exact />
           <Route path='/login' element={<Loginscreen />} exact />
           <Route path='/orders' element={<Orderscreen />} exact />
+          <Route path='/orders/:id' element={<SingleOrderscreen />} exact />
         </Routes>
       </Router>
     </div>

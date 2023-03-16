@@ -40,7 +40,7 @@ const ListOrders = () => {
           ),
         actions: (
           <Link
-            to={`/order/${order._id}`}
+            to={`/orders/${order._id}`}
             className='btn btn-primary bg-secondary'>
             <i className='fa fa-eye'></i>
           </Link>
