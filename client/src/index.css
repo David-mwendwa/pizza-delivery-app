@@ -29,10 +29,10 @@ h1 {
   display: flex !important;
 }
 
-.btn {
+/* .btn {
   background-color: red !important;
   color: white !important;
-}
+} */
 
 select {
   box-shadow: none !important;

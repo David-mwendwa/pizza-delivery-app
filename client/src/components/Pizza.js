@@ -19,9 +19,7 @@ const Pizza = ({ pizza }) => {
   };
 
   return (
-    <div
-      style={{ margin: '70px' }}
-      className='shadow p-3 mb-5 bg-white rounded'>
+    <div className='shadow p-3 mb-5 bg-white rounded'>
       <div onClick={handleShow}>
         <h1>{pizza.name}</h1>
         <img
@@ -69,7 +67,7 @@ const Pizza = ({ pizza }) => {
           </h1>
         </div>
         <div className='m-1 w-100'>
-          <button className='btn' onClick={handleAddToCart}>
+          <button className='btn btn-secondary' onClick={handleAddToCart}>
             ADD TO CART
           </button>
         </div>
@@ -91,7 +89,7 @@ const Pizza = ({ pizza }) => {
         </Modal.Body>
 
         <Modal.Footer>
-          <button className='btn' onClick={handleClose}>
+          <button className='btn btn-secondary' onClick={handleClose}>
             CLOSE
           </button>
         </Modal.Footer>

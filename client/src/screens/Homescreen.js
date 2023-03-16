@@ -4,6 +4,7 @@ import { getAllPizzas } from '../redux/actions/pizzaActions';
 import Pizza from '../components/Pizza';
 import Loader from '../components/Loader';
 import Error from '../components/Error';
+import Filter from '../components/Filter';
 
 const Homescreen = () => {
   const dispatch = useDispatch();
@@ -15,8 +16,9 @@ const Homescreen = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className='container'>
       {loading && <Loader />}
+      <Filter />
       <div className='row justify-content-center'>
         {error ? (
           <Error message={'Something went wrong'} />
