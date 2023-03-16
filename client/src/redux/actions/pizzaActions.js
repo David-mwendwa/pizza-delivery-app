@@ -28,7 +28,6 @@ export const filterPizzas = (searchKey, category) => async (dispatch) => {
         (pizza) => pizza.category.toLowerCase() === category.toLowerCase()
       );
     }
-    console.log({ filteredPizzas });
     dispatch({ type: GET_PIZZAS_SUCCESS, payload: filteredPizzas });
   } catch (error) {
     dispatch({ type: GET_PIZZAS_FAIL, payload: error });

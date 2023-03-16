@@ -27,7 +27,12 @@ const Checkout = ({ subtotal }) => {
         shippingAddress
         token={tokenHandler}
         stripeKey='pk_test_51Imu8iKOyrEmScQWPjLK1SnUf9PbG8rllu8jmde1hV3ACQ6Qgmah6LUbIY6ihb89T4drjJvpcopn6V5HMwKvZEef00WiY46IBc'>
-        <button className='btn btn-info'>Pay Now</button>
+        <button
+          type='button'
+          className='btn btn-dark btn-block btn-lg'
+          data-mdb-ripple-color='dark'>
+          CHECKOUT
+        </button>
       </StripeCheckout>
     </div>
   );
