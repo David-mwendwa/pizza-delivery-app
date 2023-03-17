@@ -47,7 +47,7 @@ function App() {
               exact
             />
             <Route
-              path='/admin/pizzas/new'
+              path='/admin/pizza/new'
               element={
                 <Protected>
                   <NewPizza isAdmin={true} />

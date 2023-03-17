@@ -20,7 +20,7 @@ const pizzaSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      required: [true, 'Please provide product image'],
+      // required: [true, 'Please provide product image'],
       trim: true,
     },
     description: {

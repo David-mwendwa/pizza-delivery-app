@@ -27,7 +27,7 @@ const Adminscreen = () => {
           <Link to='/admin/pizzas'>Pizzas List</Link>
         </li>
         <li>
-          <Link to='/admin/addPizza'>Add new pizza</Link>
+          <Link to='/admin/pizza/new'>Add new pizza</Link>
         </li>
       </ul>
     </div>
