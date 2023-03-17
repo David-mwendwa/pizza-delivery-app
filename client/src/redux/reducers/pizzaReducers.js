@@ -5,6 +5,9 @@ import {
   NEW_PIZZA_FAIL,
   NEW_PIZZA_REQUEST,
   NEW_PIZZA_SUCCESS,
+  DELETE_PIZZA_FAIL,
+  DELETE_PIZZA_REQUEST,
+  DELETE_PIZZA_SUCCESS,
 } from '../constants/pizzaConstants';
 
 export const getAllPizzasReducer = (state = { pizzas: [] }, action) => {
@@ -23,10 +26,23 @@ export const getAllPizzasReducer = (state = { pizzas: [] }, action) => {
 export const addNewPizzaReducer = (state = {}, action) => {
   switch (action.type) {
     case NEW_PIZZA_REQUEST:
-      return { loading: true, ...state };
+      return { loading: true };
     case NEW_PIZZA_SUCCESS:
       return { loading: false, success: true };
     case NEW_PIZZA_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const pizzaActionsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case DELETE_PIZZA_REQUEST:
+      return { ...state, loading: true };
+    case DELETE_PIZZA_SUCCESS:
+      return { ...state, loading: false, success: true };
+    case DELETE_PIZZA_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

@@ -6,6 +6,9 @@ import {
   NEW_PIZZA_FAIL,
   NEW_PIZZA_REQUEST,
   NEW_PIZZA_SUCCESS,
+  DELETE_PIZZA_FAIL,
+  DELETE_PIZZA_REQUEST,
+  DELETE_PIZZA_SUCCESS,
 } from '../constants/pizzaConstants';
 
 export const getAllPizzas = () => async (dispatch) => {
@@ -49,8 +52,7 @@ export const addNewPizza = (newPizza) => async (dispatch) => {
   console.log({ newPizza });
 
   try {
-    const { data } = await axios.post('/api/v1/admin/pizza/new', newPizza);
-    console.log('CREATE_PIZZA', data);
+    await axios.post('/api/v1/admin/pizza/new', newPizza);
     dispatch({ type: NEW_PIZZA_SUCCESS });
   } catch (error) {
     dispatch({
@@ -59,6 +61,20 @@ export const addNewPizza = (newPizza) => async (dispatch) => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
+    });
+  }
+};
+
+// Delete pizza
+export const deletePizza = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: DELETE_PIZZA_REQUEST });
+    await axios.delete(`/api/v1/admin/pizza/${id}`);
+    dispatch({ type: DELETE_PIZZA_SUCCESS });
+  } catch (error) {
+    dispatch({
+      type: DELETE_PIZZA_FAIL,
+      payload: error.response.data.message,
     });
   }
 };

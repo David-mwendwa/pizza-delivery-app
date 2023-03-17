@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { MDBDataTable } from 'mdbreact';
 import MetaData from '../MetaData';
-import { getAllPizzas } from '../../redux/actions/pizzaActions';
+import { deletePizza, getAllPizzas } from '../../redux/actions/pizzaActions';
 import Loader from '../Loader';
 import Error from '../Error';
 
@@ -14,9 +14,9 @@ const PizzasList = () => {
 
   useEffect(() => {
     dispatch(getAllPizzas());
-  }, [dispatch]);
+  }, [dispatch, pizzas]);
 
-  console.log({ pizzas });
+  useEffect(() => {}, [pizzas]);
 
   const setPizzas = () => {
     const data = {
@@ -41,7 +41,7 @@ const PizzasList = () => {
         actions: (
           <div className='d-flex justify-content-around'>
             <Link to={`/admin/pizzas/${pizza._id}`} className='py-1 px-2'>
-              <i class='fa fa-pencil-square' aria-hidden='true'></i>
+              <i className='fa fa-pencil-square' aria-hidden='true'></i>
             </Link>
             <button
               className='btn py-1 px-2 ml-2'
@@ -57,8 +57,7 @@ const PizzasList = () => {
   };
 
   const handleDelete = (id) => {
-    console.log(id);
-    // dispatch(deletePizza(id));
+    dispatch(deletePizza(id));
   };
 
   return (

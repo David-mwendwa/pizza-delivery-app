@@ -4,7 +4,7 @@ import {
   deleteOne,
   getAll,
   updateOne,
-} from '../utils/handleFactory.js';
+} from '../utils/handleAPI.js';
 
 export const getAllPizzas = getAll(Pizza);
 
