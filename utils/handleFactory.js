@@ -82,7 +82,7 @@ const getAll = (Model, filterOption) => async (req, res, next) => {
   if (typeof query === 'object' && !Array.isArray(query) && query !== null) {
     // Allows for additional options that can be parsed in find method i.e {userId: req.user.userId}
     filter = Object.assign(filter, query);
-  } else if (typeof param === 'string' || param instanceof String) {
+  } else if (typeof query === 'string' || query instanceof String) {
     // Allow for search functionality through value keyword -> accepts field name to search from i.e name, product, description etc
     let searchField = query;
     const keyword = req.query[searchField]

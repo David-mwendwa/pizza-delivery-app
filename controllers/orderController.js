@@ -5,6 +5,7 @@ const stripe = new Stripe(
   'sk_test_51Imu8iKOyrEmScQW3cepN6ppj7EXKrrhf3VTtEkBihn9Kt2o8S5PH4Or5w7VARuWOmF6HTsbU8LrbiT2g6oGFnid00mvREAaRm'
 );
 import Order from '../models/orderModel.js';
+import { getOne } from '../utils/handleFactory.js';
 
 export const placeOrder = async (req, res) => {
   // when using authentication, currentUser isn't really needed - you can access the user from the req
@@ -60,10 +61,4 @@ export const getMyOrders = async (req, res) => {
   res.json({ success: true, data: { orders } });
 };
 
-export const getSingleOrder = async (req, res) => {
-  const order = await Order.findOne({ _id: req.params.id });
-  if (!order) {
-    throw new NotFoundError('No order with that ID');
-  }
-  res.json({ success: true, data: { data: order } });
-};
+export const getSingleOrder = getOne(Order);
