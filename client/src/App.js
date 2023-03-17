@@ -1,24 +1,24 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Protected from './utils/Protected';
-import Adminscreen from './screens/Adminscreen';
 import Cartscreen from './screens/Cartscreen';
 import Homescreen from './screens/Homescreen';
 import Loginscreen from './screens/Loginscreen';
 import Orderscreen from './screens/Orderscreen';
 import Registerscreen from './screens/Registerscreen';
 import SingleOrderscreen from './screens/SingleOrderscreen';
-import UsersList from './screens/admin/UsersList';
-import OrdersList from './screens/admin/UsersList';
-import PizzasList from './screens/admin/PizzasList';
-import AddPizza from './screens/admin/AddPizza';
+import Adminscreen from './components/admin/Adminscreen';
+import UsersList from './components/admin/UsersList';
+import OrdersList from './components/admin/UsersList';
+import PizzasList from './components/admin/PizzasList';
+import AddPizza from './components/admin/AddPizza';
 
 function App() {
   return (
     <div className='App'>
       <Router>
         <Navbar />
-        <div className='container my-4'>
+        <div className='container'>
           <Routes>
             <Route path='/' element={<Homescreen />} exact />
             <Route path='/cart' element={<Cartscreen />} exact />

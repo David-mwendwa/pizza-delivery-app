@@ -11,8 +11,8 @@ const Navbar = () => {
 
   return (
     <nav className='navbar navbar-expand-lg navbar-light bg-light shadow'>
-      <Link className='navbar-brand' to='/'>
-        PIZZA DELIVERY
+      <Link className='navbar-brand pl-3' to='/'>
+        D-PIZZAs
       </Link>
       <button
         className='navbar-toggler'

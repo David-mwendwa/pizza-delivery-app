@@ -18,8 +18,8 @@ import { useSelector } from 'react-redux';
 const Protected = ({ children }) => {
   const { currentUser } = useSelector((state) => state.userLogin);
   const isAuthorized =
-    currentUser &&
-    (currentUser.role === 'admin' || currentUser.isAdmin || false);
+    (currentUser && (/admin/i.test(currentUser.role) || currentUser.isAdmin)) ||
+    false;
 
   if (!isAuthorized) {
     return <Navigate to='/' replace />;
