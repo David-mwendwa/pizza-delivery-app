@@ -39,9 +39,7 @@ const ListOrders = () => {
             <p style={{ color: 'red' }}>{order.orderStatus}</p>
           ),
         actions: (
-          <Link
-            to={`/orders/${order._id}`}
-            className='btn btn-light'>
+          <Link to={`/orders/${order._id}`} className='btn btn-light'>
             <i className='fa fa-eye'></i>
           </Link>
         ),
@@ -52,25 +50,28 @@ const ListOrders = () => {
   };
 
   return (
-    <div>
-      <h2
-        className='text-center text-decoration-underline'
-        style={{ fontSize: '25px', opacity: '.7' }}>
-        MY ORDERS ({orders.length})
-      </h2>
+    <>
       {error && <Error message={error} />}
-      {loading ? (
-        <Loader />
-      ) : (
-        <MDBDataTable
-          data={setOrders()}
-          className='px-3'
-          bordered
-          striped
-          hover
-        />
-      )}
-    </div>
+      <div>
+        <h2
+          className='text-center text-decoration-underline'
+          style={{ fontSize: '25px', opacity: '.7' }}>
+          MY ORDERS ({orders.length})
+        </h2>
+
+        {loading ? (
+          <Loader />
+        ) : (
+          <MDBDataTable
+            data={setOrders()}
+            className='px-3'
+            bordered
+            striped
+            hover
+          />
+        )}
+      </div>
+    </>
   );
 };
 

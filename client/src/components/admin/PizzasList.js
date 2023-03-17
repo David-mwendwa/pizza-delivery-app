@@ -24,7 +24,7 @@ const PizzasList = () => {
         { label: 'ID', field: 'id', sort: 'asc' },
         { label: 'Name', field: 'name', sort: 'asc' },
         { label: 'Prices', field: 'prices', sort: 'asc' },
-        { label: 'Varients', field: 'varients', sort: 'asc' },
+        { label: 'Variants', field: 'variants', sort: 'asc' },
         { label: 'Stock', field: 'stock', sort: 'asc' },
         { label: 'Actions', field: 'actions', sort: 'asc' },
       ],
@@ -36,7 +36,7 @@ const PizzasList = () => {
         id: pizza._id,
         name: pizza.name,
         prices: JSON.stringify(pizza.prices[0]),
-        varients: pizza.varients.join(', '),
+        variants: pizza.varients.join(', '),
         stock: 10, //default
         actions: (
           <div className='d-flex justify-content-around'>
@@ -65,28 +65,25 @@ const PizzasList = () => {
     <>
       {error && <Error message={error} />}
       <MetaData title={'Pizzas List'} />
-      <div className='row'>
-        <div className='col-12 col-md-10'>
+      <div>
+        <h2
+          className='text-center text-decoration-underline'
+          style={{ fontSize: '35px', opacity: '.7' }}>
+          ALL PIZZAS
+        </h2>
+        {loading ? (
+          <Loader />
+        ) : (
           <>
-            <h1 style={{ fontSize: '35px' }} className='my-5 text-center'>
-              All Pizzas
-            </h1>
-
-            {loading ? (
-              <Loader />
-            ) : (
-              <>
-                <MDBDataTable
-                  data={setPizzas()}
-                  className='px-3'
-                  bordered
-                  striped
-                  hover
-                />
-              </>
-            )}
+            <MDBDataTable
+              data={setPizzas()}
+              className='px-3'
+              bordered
+              striped
+              hover
+            />
           </>
-        </div>
+        )}
       </div>
     </>
   );
