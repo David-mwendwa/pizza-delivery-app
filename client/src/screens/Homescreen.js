@@ -19,7 +19,7 @@ const Homescreen = () => {
     <>
       {loading && <Loader />}
       <Filter />
-      <div className='row justify-content-center'>
+      <div className='row justify-content-center text-center'>
         {error ? (
           <Error message={'Something went wrong'} />
         ) : (

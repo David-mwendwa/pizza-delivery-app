@@ -1,9 +1,15 @@
 import { useState } from 'react';
 
 /**
- * @param {*} initialValues as initial values object i.e {name: '', image: null}
- * @returns an object containing updated input values as 'values', resetValues function for resetting to initialValues and handleChange function for handling onChange event
- * @invoke destructure values, resetValues and handleChange from useInput(initialValues) i.e const {values, resetValues, handleChange} = useInput(initialValues)
+ * A hook to access react forms
+ * @param {*} initialValues parsed as an object
+ * @returns an object with updated input values as 'values', resetValues function for resetting to initialValues and handleChange function for handling onChange event
+ * @example const { values, handleChange, resetValues } = useInput({
+              name: '',
+              email: '',
+              password: '',
+              passwordConfirm: '',
+            });
  */
 const useInput = (initialValues) => {
   const [values, setValues] = useState(initialValues);

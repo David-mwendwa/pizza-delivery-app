@@ -41,7 +41,7 @@ const ListOrders = () => {
         actions: (
           <Link
             to={`/orders/${order._id}`}
-            className='btn btn-primary bg-secondary'>
+            className='btn btn-light'>
             <i className='fa fa-eye'></i>
           </Link>
         ),

@@ -35,7 +35,7 @@ const Navbar = () => {
                   textDecoration: 'none',
                 }}
                 className='dropdown-toggle'
-                to='#!'
+                to=''
                 role='button'
                 id='dropdownMenuLink'
                 data-toggle='dropdown'

@@ -55,6 +55,7 @@ const Cartscreen = () => {
                             </div>
                             <div className='col-md-3 col-lg-3 col-xl-2 d-flex'>
                               <i
+                                role='button'
                                 className='fa fa-minus'
                                 onClick={() =>
                                   dispatch(
@@ -76,6 +77,7 @@ const Cartscreen = () => {
                               />
 
                               <i
+                                role='button'
                                 className='fa fa-plus'
                                 onClick={() =>
                                   dispatch(
@@ -105,7 +107,7 @@ const Cartscreen = () => {
 
                       <div className='pt-5'>
                         <h6 className='mb-0'>
-                          <Link to='/pizzas' className='text-body'>
+                          <Link to='/' className='text-body'>
                             <i className='fas fa-long-arrow-alt-left me-2'></i>
                             Back to shop
                           </Link>
