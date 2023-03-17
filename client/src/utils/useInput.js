@@ -5,10 +5,10 @@ import { useState } from 'react';
  * @param {*} initialValues parsed as an object
  * @returns an object with updated input values as 'values', resetValues function for resetting to initialValues and handleChange function for handling onChange event
  * @example const { values, handleChange, resetValues } = useInput({
-              name: '',
-              email: '',
-              password: '',
-              passwordConfirm: '',
+              value1: '',
+              value2: false,
+              value3: {},
+              value4: [],
             });
  */
 const useInput = (initialValues) => {

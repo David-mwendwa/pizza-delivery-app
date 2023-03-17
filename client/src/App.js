@@ -11,14 +11,14 @@ import Adminscreen from './components/admin/Adminscreen';
 import UsersList from './components/admin/UsersList';
 import OrdersList from './components/admin/UsersList';
 import PizzasList from './components/admin/PizzasList';
-import AddPizza from './components/admin/AddPizza';
+import NewPizza from './components/admin/NewPizza';
 
 function App() {
   return (
     <div className='App'>
       <Router>
         <Navbar />
-        <div className='container'>
+        <div className='container my-3'>
           <Routes>
             <Route path='/' element={<Homescreen />} exact />
             <Route path='/cart' element={<Cartscreen />} exact />
@@ -50,7 +50,7 @@ function App() {
               path='/admin/pizzas/new'
               element={
                 <Protected>
-                  <AddPizza isAdmin={true} />
+                  <NewPizza isAdmin={true} />
                 </Protected>
               }
               exact

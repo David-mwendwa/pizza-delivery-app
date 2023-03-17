@@ -4,7 +4,10 @@ import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import devToolsEnhancer from 'remote-redux-devtools';
-import { getAllPizzasReducer } from './reducers/pizzaReducers';
+import {
+  addNewPizzaReducer,
+  getAllPizzasReducer,
+} from './reducers/pizzaReducers';
 import { cartReducer } from './reducers/cartReducer';
 import { userLoginReducer, userRegisterReducer } from './reducers/userReducer';
 import {
@@ -15,6 +18,7 @@ import {
 
 const finalReducer = combineReducers({
   getAllPizzasReducer: getAllPizzasReducer,
+  addNewPizza: addNewPizzaReducer,
   cartReducer: cartReducer,
   userRegister: userRegisterReducer,
   userLogin: userLoginReducer,

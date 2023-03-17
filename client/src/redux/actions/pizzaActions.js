@@ -3,6 +3,9 @@ import {
   GET_PIZZAS_FAIL,
   GET_PIZZAS_REQUEST,
   GET_PIZZAS_SUCCESS,
+  NEW_PIZZA_FAIL,
+  NEW_PIZZA_REQUEST,
+  NEW_PIZZA_SUCCESS,
 } from '../constants/pizzaConstants';
 
 export const getAllPizzas = () => async (dispatch) => {
@@ -30,6 +33,29 @@ export const filterPizzas = (searchKey, category) => async (dispatch) => {
     }
     dispatch({ type: GET_PIZZAS_SUCCESS, payload: filteredPizzas });
   } catch (error) {
-    dispatch({ type: GET_PIZZAS_FAIL, payload: error });
+    dispatch({
+      type: GET_PIZZAS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const addNewPizza = (newPizza) => async (dispatch) => {
+  dispatch({ type: NEW_PIZZA_REQUEST });
+
+  try {
+    await axios.post('/api/v1/admin/pizza/new', newPizza);
+    dispatch({ type: NEW_PIZZA_SUCCESS });
+  } catch (error) {
+    dispatch({
+      type: NEW_PIZZA_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
   }
 };

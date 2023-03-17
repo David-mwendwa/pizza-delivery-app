@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Routes, Route } from 'react-router-dom';
 
 const Adminscreen = () => {
-  const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.userLogin);
 
   useEffect(() => {
