@@ -1,6 +1,15 @@
 import Pizza from '../models/pizzaModel.js';
-import { createOne, getAll } from '../utils/handleFactory.js';
+import {
+  createOne,
+  deleteOne,
+  getAll,
+  updateOne,
+} from '../utils/handleFactory.js';
 
-export const getAllPizzas = getAll(Pizza)
+export const getAllPizzas = getAll(Pizza);
 
 export const createPizza = createOne(Pizza);
+
+export const updatePizza = updateOne(Pizza);
+
+export const deletePizza = deleteOne(Pizza);
