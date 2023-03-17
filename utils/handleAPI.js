@@ -1,9 +1,13 @@
 import { StatusCodes } from 'http-status-codes';
 import { NotFoundError } from '../errors/index.js';
 
+/**
+ * A class handler function for API features
+ * @query mongoose query - mongoose data model and it's find method @example Model.find({...})
+ * @queryString express api query method @example req.query
+ */
 class APIFeatures {
   constructor(query, queryString) {
-    // query: mongoose query, queryString: query from express api
     this.query = query;
     this.queryString = queryString;
   }
@@ -47,15 +51,26 @@ class APIFeatures {
   }
 }
 
+/**
+ * A function to create a document
+ * @param {*} Model - mongoose data model
+ * @returns created document
+ */
 const createOne = (Model) => async (req, res, next) => {
   const doc = await Model.create(req.body);
 
   res.status(StatusCodes.CREATED).json({
     success: true,
-    data: { data: doc },
+    data: doc,
   });
 };
 
+/**
+ * A function to query and get one document
+ * @param {*} Model - mongoose data model
+ * @param {*} populateOptions - options to parse to mongoose populate method
+ * @returns one document
+ */
 const getOne = (Model, populateOptions) => async (req, res, next) => {
   let query = Model.findById(req.params.id);
 
@@ -67,23 +82,28 @@ const getOne = (Model, populateOptions) => async (req, res, next) => {
   if (!doc) {
     throw new NotFoundError('No document found with that ID');
   }
-  res.status(StatusCodes.OK).json({ success: true, data: { data: doc } });
+  res.status(StatusCodes.OK).json({ success: true, data: doc });
 };
 
-const getAll = (Model, filterOption) => async (req, res, next) => {
+/**
+ * A function to query and get many documents
+ * @param {*} Model - mongoose data model
+ * @param {*} filterOption(Object) - additional query options that can be parsed on find method @example {userId: req.user._id}
+ * @param {*} filterOption(String) - field name to make a search filter from @example name, product, description
+ * @returns an array of one or more documents
+ */
+const getMany = (Model, filterOption) => async (req, res, next) => {
   let query = filterOption;
   let filter = {};
-  // Allow for nested routes -> param kay has to be similar to the property in the database i.e {productId: req.params.productId}
+  // handle nested routes - param kay has to be similar to the property in the database @example {productId: req.params.productId}
   if (!!Object.keys(req.params).length) {
     for (const key in req.params) {
       filter[[key]] = req.params[key];
     }
   }
   if (typeof query === 'object' && !Array.isArray(query) && query !== null) {
-    // Allows for additional options that can be parsed in find method i.e {userId: req.user.userId}
     filter = Object.assign(filter, query);
   } else if (typeof query === 'string' || query instanceof String) {
-    // Allow for search functionality through value keyword -> accepts field name to search from i.e name, product, description etc
     let searchField = query;
     const keyword = req.query[searchField]
       ? { [searchField]: { $regex: req.query[searchField], $options: 'i' } }
@@ -102,10 +122,15 @@ const getAll = (Model, filterOption) => async (req, res, next) => {
   res.status(StatusCodes.OK).json({
     success: true,
     totalCount: doc.length,
-    data: { data: doc },
+    data: doc,
   });
 };
 
+/**
+ * A function to update document by id
+ * @param {*} Model - mongoose data model
+ * @returns updated document
+ */
 const updateOne = (Model) => async (req, res, next) => {
   const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
@@ -118,10 +143,15 @@ const updateOne = (Model) => async (req, res, next) => {
 
   res.status(StatusCodes.OK).json({
     success: true,
-    data: { data: doc },
+    data: doc,
   });
 };
 
+/**
+ * A function to delete document by id
+ * @param {*} Model - mongoose data model
+ * @returns null
+ */
 const deleteOne = (Model) => async (req, res, next) => {
   const doc = await Model.findByIdAndRemove(req.params.id);
 
@@ -135,4 +165,4 @@ const deleteOne = (Model) => async (req, res, next) => {
   });
 };
 
-export { getAll, getOne, createOne, updateOne, deleteOne };
+export { APIFeatures, getMany, getOne, createOne, updateOne, deleteOne };

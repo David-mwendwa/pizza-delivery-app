@@ -8,7 +8,8 @@ import Error from '../components/Error';
 
 const ListOrders = () => {
   const dispatch = useDispatch();
-  const { loading, error, orders } = useSelector((state) => state.getMyOrders);
+  const orderstate = useSelector((state) => state.getMyOrders);
+  const { loading, error, orders } = orderstate;
 
   useEffect(() => {
     dispatch(getMyOrders());

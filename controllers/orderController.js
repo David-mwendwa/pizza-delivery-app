@@ -58,7 +58,9 @@ export const getMyOrders = async (req, res) => {
   if (!orders) {
     throw new NotFoundError('No orders available');
   }
-  res.json({ success: true, data: { orders } });
+  res.json({ success: true, data: orders });
 };
+
+// export const getMyOrders = getMany(Order);
 
 export const getSingleOrder = getOne(Order);

@@ -16,8 +16,20 @@ import {
   getSingleOrderReducer,
   placeOrderReducer,
 } from './reducers/orderReducer';
+import {
+  createOneReducer,
+  deleteOneReducer,
+  getManyReducer,
+  getOneReducer,
+  updateOneReducer,
+} from './reducers/actionReducer';
 
 const finalReducer = combineReducers({
+  getMany: getManyReducer,
+  getOne: getOneReducer,
+  createOne: createOneReducer,
+  updateOne: updateOneReducer,
+  deleteOne: deleteOneReducer,
   getAllPizzasReducer: getAllPizzasReducer,
   addNewPizza: addNewPizzaReducer,
   pizzaActions: pizzaActionsReducer,

@@ -2,11 +2,11 @@ import Pizza from '../models/pizzaModel.js';
 import {
   createOne,
   deleteOne,
-  getAll,
+  getMany,
   updateOne,
 } from '../utils/handleAPI.js';
 
-export const getAllPizzas = getAll(Pizza);
+export const getAllPizzas = getMany(Pizza);
 
 export const createPizza = createOne(Pizza);
 
