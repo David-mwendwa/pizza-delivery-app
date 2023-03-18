@@ -7,6 +7,7 @@ import devToolsEnhancer from 'remote-redux-devtools';
 import {
   addNewPizzaReducer,
   getAllPizzasReducer,
+  getPizzaDetailsReducer,
   pizzaActionsReducer,
 } from './reducers/pizzaReducers';
 import { cartReducer } from './reducers/cartReducer';
@@ -30,7 +31,8 @@ const finalReducer = combineReducers({
   createOne: createOneReducer,
   updateOne: updateOneReducer,
   deleteOne: deleteOneReducer,
-  getAllPizzasReducer: getAllPizzasReducer,
+  getAllPizzas: getAllPizzasReducer,
+  getPizzaDetails: getPizzaDetailsReducer,
   addNewPizza: addNewPizzaReducer,
   pizzaActions: pizzaActionsReducer,
   cartReducer: cartReducer,

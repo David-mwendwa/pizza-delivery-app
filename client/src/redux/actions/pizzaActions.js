@@ -1,5 +1,10 @@
 import axios from 'axios';
 import {
+  UPDATE_ONE_FAIL,
+  UPDATE_ONE_REQUEST,
+  UPDATE_ONE_SUCCESS,
+} from '../constants/actionConstants';
+import {
   GET_PIZZAS_FAIL,
   GET_PIZZAS_REQUEST,
   GET_PIZZAS_SUCCESS,
@@ -9,16 +14,30 @@ import {
   DELETE_PIZZA_FAIL,
   DELETE_PIZZA_REQUEST,
   DELETE_PIZZA_SUCCESS,
+  GET_PIZZA_DETAILS_FAIL,
+  GET_PIZZA_DETAILS_REQUEST,
+  GET_PIZZA_DETAILS_SUCCESS,
 } from '../constants/pizzaConstants';
 
 export const getAllPizzas = () => async (dispatch) => {
   dispatch({ type: GET_PIZZAS_REQUEST });
   try {
     const { data } = await axios.get('/api/v1/pizzas');
-    console.log(data);
+    console.log('PIZZAS', data);
     dispatch({ type: GET_PIZZAS_SUCCESS, payload: data.data });
   } catch (error) {
     dispatch({ type: GET_PIZZAS_FAIL, payload: error });
+  }
+};
+
+export const getPizzaDetails = (id) => async (dispatch) => {
+  dispatch({ type: GET_PIZZA_DETAILS_REQUEST });
+  try {
+    const { data } = await axios.get(`/api/v1/pizzas/${id}`);
+    console.log('PIZZA DETAILS', data);
+    dispatch({ type: GET_PIZZA_DETAILS_SUCCESS, payload: data.data });
+  } catch (error) {
+    dispatch({ type: GET_PIZZA_DETAILS_FAIL, payload: error });
   }
 };
 
@@ -66,7 +85,7 @@ export const addNewPizza = (newPizza) => async (dispatch) => {
   }
 };
 
-// Delete pizza
+// delete Pizza
 export const deletePizza = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_PIZZA_REQUEST });
@@ -75,6 +94,21 @@ export const deletePizza = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: DELETE_PIZZA_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+// update pizza
+export const updatePizza = (id, newDetails) => async (dispatch) => {
+  console.log({ id, newDetails });
+  try {
+    dispatch({ type: UPDATE_ONE_REQUEST });
+    await axios.patch(`/api/v1/admin/pizza/${id}`, newDetails);
+    dispatch({ type: UPDATE_ONE_SUCCESS });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_ONE_FAIL,
       payload: error.response.data.message,
     });
   }

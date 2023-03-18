@@ -12,6 +12,7 @@ import UsersList from './components/admin/UsersList';
 import OrdersList from './components/admin/UsersList';
 import PizzasList from './components/admin/PizzasList';
 import NewPizza from './components/admin/NewPizza';
+import UpdatePizza from './components/admin/UpdatePizza';
 
 function App() {
   return (
@@ -42,6 +43,15 @@ function App() {
               element={
                 <Protected>
                   <PizzasList isAdmin={true} />
+                </Protected>
+              }
+              exact
+            />
+            <Route
+              path='/admin/pizzas/:id'
+              element={
+                <Protected>
+                  <UpdatePizza isAdmin={true} />
                 </Protected>
               }
               exact

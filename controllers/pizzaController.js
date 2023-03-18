@@ -3,10 +3,13 @@ import {
   createOne,
   deleteOne,
   getMany,
+  getOne,
   updateOne,
 } from '../utils/handleAPI.js';
 
 export const getAllPizzas = getMany(Pizza);
+
+export const getPizzaDetails = getOne(Pizza);
 
 export const createPizza = createOne(Pizza);
 
