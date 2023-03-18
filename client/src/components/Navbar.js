@@ -46,6 +46,11 @@ const Navbar = () => {
               <div
                 className='dropdown-menu'
                 aria-labelledby='dropdownMenuButton'>
+                {currentUser && currentUser.isAdmin && (
+                  <Link className='dropdown-item' to='/admin/dashboard'>
+                    Dashboard
+                  </Link>
+                )}
                 <Link className='dropdown-item' to='/orders'>
                   Orders
                 </Link>

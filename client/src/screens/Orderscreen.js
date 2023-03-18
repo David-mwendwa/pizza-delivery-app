@@ -53,16 +53,15 @@ const ListOrders = () => {
   return (
     <>
       {error && <Error message={error} />}
-      <div>
-        <h2
-          className='text-center text-decoration-underline'
-          style={{ fontSize: '25px', opacity: '.7' }}>
-          MY ORDERS ({orders.length})
-        </h2>
-
-        {loading ? (
-          <Loader />
-        ) : (
+      {loading ? (
+        <Loader />
+      ) : (
+        <div>
+          <h2
+            className='text-center text-decoration-underline'
+            style={{ fontSize: '25px', opacity: '.7' }}>
+            MY ORDERS ({orders.length})
+          </h2>
           <MDBDataTable
             data={setOrders()}
             className='px-3'
@@ -70,8 +69,8 @@ const ListOrders = () => {
             striped
             hover
           />
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 };

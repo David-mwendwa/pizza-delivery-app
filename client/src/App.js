@@ -29,7 +29,7 @@ function App() {
           </Routes>
           <Routes>
             <Route
-              path='/admin'
+              path='/admin/dashboard'
               element={
                 <Protected>
                   <Adminscreen isAdmin={true} />
