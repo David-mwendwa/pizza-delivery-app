@@ -65,7 +65,6 @@ export const filterPizzas = (searchKey, category) => async (dispatch) => {
 
 export const addNewPizza = (newPizza) => async (dispatch) => {
   dispatch({ type: NEW_PIZZA_REQUEST });
-  console.log({ newPizza });
 
   try {
     await axios.post('/api/v1/admin/pizza/new', newPizza);

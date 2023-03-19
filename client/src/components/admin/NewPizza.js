@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewPizza } from '../../redux/actions/pizzaActions';
 import useInput from '../../utils/useInput';
@@ -6,11 +6,12 @@ import Error from '../Error';
 import Success from '../Success';
 import Loader from '../Loader';
 import { useNavigate } from 'react-router';
+import { PIZZA_RESET } from '../../redux/constants/pizzaConstants';
 
 const NewPizza = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, success, error } = useSelector((state) => state.addNewPizza);
+  const { loading, created, error } = useSelector((state) => state.pizza);
 
   const { values, handleChange, resetValues } = useInput({
     name: '',
@@ -35,8 +36,18 @@ const NewPizza = () => {
     e.preventDefault();
     dispatch(addNewPizza(newPizza));
     resetValues();
-    navigate('/admin/pizzas');
+    setTimeout(() => {
+      navigate('/admin/pizzas');
+    }, 2000);
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (created) {
+        dispatch({ type: PIZZA_RESET });
+      }
+    }, 5000);
+  }, [dispatch, created]);
 
   return (
     <>
@@ -45,7 +56,7 @@ const NewPizza = () => {
         <div className='col-xl-9'>
           <h1 className=' mb-4 text-center'>Add New Pizza</h1>
           <div className='card' style={{ borderRadius: '15px' }}>
-            {success && <Success message='new pizza added successfully' />}
+            {created && <Success message='new pizza added successfully' />}
             {error && <Error message={error} />}
             <div className='card-body'>
               <div className='row align-items-center pt-4 pb-3'>

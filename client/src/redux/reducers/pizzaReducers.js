@@ -14,6 +14,7 @@ import {
   DELETE_PIZZA_FAIL,
   DELETE_PIZZA_REQUEST,
   DELETE_PIZZA_SUCCESS,
+  PIZZA_RESET,
 } from '../constants/pizzaConstants';
 
 export const pizzasReducer = (state = { pizzas: [] }, action) => {
@@ -58,6 +59,8 @@ export const pizzaReducer = (state = {}, action) => {
     case UPDATE_PIZZA_FAIL:
     case DELETE_PIZZA_FAIL:
       return { loading: false, error: action.payload };
+    case PIZZA_RESET:
+      return {};
     default:
       return state;
   }

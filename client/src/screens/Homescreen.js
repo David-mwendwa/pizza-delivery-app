@@ -8,7 +8,7 @@ import Filter from '../components/Filter';
 
 const Homescreen = () => {
   const dispatch = useDispatch();
-  const pizzasstate = useSelector((state) => state.getAllPizzas);
+  const pizzasstate = useSelector((state) => state.pizzas);
   const { pizzas, error, loading } = pizzasstate;
 
   useEffect(() => {

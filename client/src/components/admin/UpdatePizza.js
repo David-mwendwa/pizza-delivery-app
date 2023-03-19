@@ -7,6 +7,7 @@ import Error from '../Error';
 import Success from '../Success';
 import Loader from '../Loader';
 import { getPizzaDetails, updatePizza } from '../../redux/actions/pizzaActions';
+import { PIZZA_RESET } from '../../redux/constants/pizzaConstants';
 
 const UpdatePizza = () => {
   const [name, setName] = useState();
@@ -20,13 +21,8 @@ const UpdatePizza = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const pizzaActionsState = useSelector((state) => state.pizza);
-  const {
-    loading: actionLoading,
-    success: actionSuccess,
-    error: actionError,
-  } = pizzaActionsState;
-  const pizzaDetails = useSelector((state) => state.getPizzaDetails);
+  const { updated } = useSelector((state) => state.pizza);
+  const pizzaDetails = useSelector((state) => state.pizzaDetails);
   let { loading, pizza, error } = pizzaDetails;
 
   useEffect(() => {
@@ -54,12 +50,15 @@ const UpdatePizza = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updatePizza(id, newDetails));
-    navigate('/admin/pizzas');
+    setTimeout(() => {
+      navigate('/admin/pizzas');
+    }, 2000);
   };
 
   return (
     <>
       {loading && <Loader />}
+      {updated && <Success message={'Pizza updated successfully'} />}
       <div className='row d-flex justify-content-center align-items-center h-100'>
         <div className='col-xl-9'>
           <h1 className=' mb-4 text-center'>UPDATE PIZZA</h1>

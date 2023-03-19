@@ -7,6 +7,7 @@ import { deletePizza, getAllPizzas } from '../../redux/actions/pizzaActions';
 import Loader from '../Loader';
 import Error from '../Error';
 import Success from '../Success';
+import { PIZZA_RESET } from '../../redux/constants/pizzaConstants';
 
 const PizzasList = () => {
   const dispatch = useDispatch();
@@ -62,10 +63,18 @@ const PizzasList = () => {
     dispatch(deletePizza(id));
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      if (updated || deleted) {
+        dispatch({ type: PIZZA_RESET });
+      }
+    }, 5000);
+  }, [dispatch, updated, deleted]);
+
   return (
     <>
       {error && <Error message={error} />}
-      {updated && <Success message={'Pizza updated successfully'} />}
+      {/* {updated && <Success message={'Pizza updated successfully'} />} */}
       {deleted && <Success message={'Pizza deleted successfully'} />}
       <MetaData title={'Pizzas List'} />
       <div>
