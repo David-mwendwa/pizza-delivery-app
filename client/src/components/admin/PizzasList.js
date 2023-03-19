@@ -11,15 +11,13 @@ import { PIZZA_RESET } from '../../redux/constants/pizzaConstants';
 
 const PizzasList = () => {
   const dispatch = useDispatch();
-  const { updated, deleted } = useSelector((state) => state.pizza);
+  const { deleted } = useSelector((state) => state.pizza);
   const pizzasstate = useSelector((state) => state.pizzas);
   const { pizzas, error, loading } = pizzasstate;
 
   useEffect(() => {
     dispatch(getAllPizzas());
-  }, [dispatch]);
-
-  useEffect(() => {}, [pizzas, deleted, updated]);
+  }, [dispatch, pizzas]);
 
   const setPizzas = () => {
     const data = {
@@ -65,16 +63,15 @@ const PizzasList = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      if (updated || deleted) {
+      if (deleted) {
         dispatch({ type: PIZZA_RESET });
       }
-    }, 5000);
-  }, [dispatch, updated, deleted]);
+    }, 2000);
+  }, [dispatch, deleted]);
 
   return (
     <>
       {error && <Error message={error} />}
-      {/* {updated && <Success message={'Pizza updated successfully'} />} */}
       {deleted && <Success message={'Pizza deleted successfully'} />}
       <MetaData title={'Pizzas List'} />
       <div>
