@@ -16,7 +16,7 @@ import {
   DELETE_PIZZA_SUCCESS,
 } from '../constants/pizzaConstants';
 
-export const getAllPizzasReducer = (state = { pizzas: [] }, action) => {
+export const pizzasReducer = (state = { pizzas: [] }, action) => {
   switch (action.type) {
     case GET_PIZZAS_REQUEST:
       return { loading: true, ...state };
@@ -29,7 +29,7 @@ export const getAllPizzasReducer = (state = { pizzas: [] }, action) => {
   }
 };
 
-export const getPizzaDetailsReducer = (state = { pizza: {} }, action) => {
+export const pizzaDetailsReducer = (state = { pizza: {} }, action) => {
   switch (action.type) {
     case GET_PIZZA_DETAILS_REQUEST:
       return { loading: true, ...state };
@@ -42,53 +42,19 @@ export const getPizzaDetailsReducer = (state = { pizza: {} }, action) => {
   }
 };
 
-export const addNewPizzaReducer = (state = {}, action) => {
+export const pizzaReducer = (state = {}, action) => {
   switch (action.type) {
     case NEW_PIZZA_REQUEST:
-      return { loading: true };
+    case UPDATE_PIZZA_REQUEST:
+    case DELETE_PIZZA_REQUEST:
+      return { ...state, loading: true };
     case NEW_PIZZA_SUCCESS:
-      return { loading: false, success: true };
+      return { loading: false, created: true };
+    case UPDATE_PIZZA_SUCCESS:
+      return { ...state, loading: false, updated: true };
+    case DELETE_PIZZA_SUCCESS:
+      return { ...state, loading: false, deleted: true };
     case NEW_PIZZA_FAIL:
-      return { loading: false, error: action.payload };
-    default:
-      return state;
-  }
-};
-
-export const pizzaUpdateReducer = (state = {}, action) => {
-  switch (action.type) {
-    case UPDATE_PIZZA_REQUEST:
-      return { ...state, loading: true };
-    case UPDATE_PIZZA_SUCCESS:
-      return { ...state, loading: false, success: true };
-    case UPDATE_PIZZA_FAIL:
-      return { loading: false, error: action.payload };
-    default:
-      return state;
-  }
-};
-
-export const pizzaDeleteReducer = (state = {}, action) => {
-  switch (action.type) {
-    case DELETE_PIZZA_REQUEST:
-      return { ...state, loading: true };
-    case DELETE_PIZZA_SUCCESS:
-      return { ...state, loading: false, success: true };
-    case DELETE_PIZZA_FAIL:
-      return { loading: false, error: action.payload };
-    default:
-      return state;
-  }
-};
-
-export const pizzaActionsReducer = (state = {}, action) => {
-  switch (action.type) {
-    case UPDATE_PIZZA_REQUEST:
-    case DELETE_PIZZA_REQUEST:
-      return { ...state, loading: true };
-    case UPDATE_PIZZA_SUCCESS:
-    case DELETE_PIZZA_SUCCESS:
-      return { ...state, loading: false, success: true };
     case UPDATE_PIZZA_FAIL:
     case DELETE_PIZZA_FAIL:
       return { loading: false, error: action.payload };

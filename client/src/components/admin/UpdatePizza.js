@@ -20,17 +20,15 @@ const UpdatePizza = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const pizzaActionsState = useSelector((state) => state.pizza);
-  // const {
-  //   loading: actionLoading,
-  //   success: actionSuccess,
-  //   error: actionError,
-  // } = pizzaActionsState;
+  const pizzaActionsState = useSelector((state) => state.pizza);
+  const {
+    loading: actionLoading,
+    success: actionSuccess,
+    error: actionError,
+  } = pizzaActionsState;
   const pizzaDetails = useSelector((state) => state.getPizzaDetails);
   let { loading, pizza, error } = pizzaDetails;
-  console.log({ pizzaId: pizza._id, paramId: id });
-  console.log({ pizzaDetails });
-  
+
   useEffect(() => {
     if (pizza) {
       if (pizza._id === id) {

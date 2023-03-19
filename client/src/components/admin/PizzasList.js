@@ -10,15 +10,15 @@ import Success from '../Success';
 
 const PizzasList = () => {
   const dispatch = useDispatch();
-  const { success: actionSuccess } = useSelector((state) => state.pizza);
-  const pizzasstate = useSelector((state) => state.getAllPizzas);
+  const { updated, deleted } = useSelector((state) => state.pizza);
+  const pizzasstate = useSelector((state) => state.pizzas);
   const { pizzas, error, loading } = pizzasstate;
 
   useEffect(() => {
     dispatch(getAllPizzas());
   }, [dispatch]);
 
-  useEffect(() => {}, [pizzas, actionSuccess]);
+  useEffect(() => {}, [pizzas, deleted, updated]);
 
   const setPizzas = () => {
     const data = {
@@ -65,7 +65,8 @@ const PizzasList = () => {
   return (
     <>
       {error && <Error message={error} />}
-      {actionSuccess && <Success message={'Pizza delete successfully'} />}
+      {updated && <Success message={'Pizza updated successfully'} />}
+      {deleted && <Success message={'Pizza deleted successfully'} />}
       <MetaData title={'Pizzas List'} />
       <div>
         <h2

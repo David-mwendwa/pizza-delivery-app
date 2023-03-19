@@ -5,12 +5,9 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import devToolsEnhancer from 'remote-redux-devtools';
 import {
-  addNewPizzaReducer,
-  getAllPizzasReducer,
-  getPizzaDetailsReducer,
-  pizzaActionsReducer,
-  pizzaDeleteReducer,
-  pizzaUpdateReducer,
+  pizzaDetailsReducer,
+  pizzaReducer,
+  pizzasReducer,
 } from './reducers/pizzaReducers';
 import { cartReducer } from './reducers/cartReducer';
 import { userLoginReducer, userRegisterReducer } from './reducers/userReducer';
@@ -33,12 +30,9 @@ const finalReducer = combineReducers({
   createOne: createOneReducer,
   updateOne: updateOneReducer,
   deleteOne: deleteOneReducer,
-  getAllPizzas: getAllPizzasReducer,
-  getPizzaDetails: getPizzaDetailsReducer,
-  addNewPizza: addNewPizzaReducer,
-  pizzaUpdate: pizzaUpdateReducer,
-  pizzaDelete: pizzaDeleteReducer,
-  pizza: pizzaActionsReducer,
+  pizzas: pizzasReducer,
+  pizzaDetails: pizzaDetailsReducer,
+  pizza: pizzaReducer,
   cartReducer: cartReducer,
   userRegister: userRegisterReducer,
   userLogin: userLoginReducer,
