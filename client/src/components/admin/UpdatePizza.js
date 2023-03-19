@@ -28,20 +28,22 @@ const UpdatePizza = () => {
   // } = pizzaActionsState;
   const pizzaDetails = useSelector((state) => state.getPizzaDetails);
   let { loading, pizza, error } = pizzaDetails;
-
-  //TODO: fix page hang up with white screen on load
+  console.log({ pizzaId: pizza._id, paramId: id });
+  console.log({ pizzaDetails });
+  
   useEffect(() => {
-    dispatch(getPizzaDetails(id));
-    setName(pizza?.name);
-    setSmall(pizza?.prices && pizza?.prices[0]['small']);
-    setMedium(pizza?.prices && pizza?.prices[0]['medium']);
-    setLarge(pizza?.prices && pizza?.prices[0]['large']);
-    setDescription(pizza?.description);
-    setCategory(pizza?.category);
-    // setImage(pizza?.image);
-  }, [dispatch, id]);
-
-  // useEffect(() => {}, [pizza]);
+    if (pizza) {
+      if (pizza._id === id) {
+        setName(pizza.name);
+        setSmall(pizza.prices[0]['small']);
+        setMedium(pizza.prices[0]['medium']);
+        setLarge(pizza.prices[0]['large']);
+        setDescription(pizza.description);
+        setCategory(pizza.category);
+        // setImage(pizza.image);
+      } else dispatch(getPizzaDetails(id));
+    } else dispatch(getPizzaDetails(id));
+  }, [dispatch, pizza, id]);
 
   const newDetails = {
     name,
