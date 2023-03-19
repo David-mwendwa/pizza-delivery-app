@@ -56,9 +56,11 @@ const UpdatePizza = () => {
   };
 
   useEffect(() => {
-    if (updated) {
-      dispatch({ type: PIZZA_RESET });
-    }
+    setTimeout(() => {
+      if (updated) {
+        dispatch({ type: PIZZA_RESET });
+      }
+    }, 2000);
   }, [dispatch, updated]);
 
   return (
@@ -69,7 +71,6 @@ const UpdatePizza = () => {
         <div className='col-xl-9'>
           <h1 className=' mb-4 text-center'>UPDATE PIZZA</h1>
           <div className='card' style={{ borderRadius: '15px' }}>
-            {/* {success && <Success message='pizza updated successfully' />} */}
             {/* {error && <Error message={error} />} */}
             <div className='card-body'>
               <div className='row align-items-center pt-4 pb-3'>

@@ -42,9 +42,11 @@ const NewPizza = () => {
   };
 
   useEffect(() => {
-    if (created) {
-      dispatch({ type: PIZZA_RESET });
-    }
+    setTimeout(() => {
+      if (created) {
+        dispatch({ type: PIZZA_RESET });
+      }
+    }, 2000);
   }, [dispatch, created]);
 
   return (
