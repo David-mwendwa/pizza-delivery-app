@@ -20,7 +20,7 @@ const UpdatePizza = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const pizzaActionsState = useSelector((state) => state.pizzaActions);
+  // const pizzaActionsState = useSelector((state) => state.pizza);
   // const {
   //   loading: actionLoading,
   //   success: actionSuccess,

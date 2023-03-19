@@ -6,9 +6,11 @@ import MetaData from '../MetaData';
 import { deletePizza, getAllPizzas } from '../../redux/actions/pizzaActions';
 import Loader from '../Loader';
 import Error from '../Error';
+import Success from '../Success';
 
 const PizzasList = () => {
   const dispatch = useDispatch();
+  const { success: actionSuccess } = useSelector((state) => state.pizza);
   const pizzasstate = useSelector((state) => state.getAllPizzas);
   const { pizzas, error, loading } = pizzasstate;
 
@@ -16,7 +18,7 @@ const PizzasList = () => {
     dispatch(getAllPizzas());
   }, [dispatch]);
 
-  useEffect(() => {}, [pizzas]);
+  useEffect(() => {}, [pizzas, actionSuccess]);
 
   const setPizzas = () => {
     const data = {
@@ -63,6 +65,7 @@ const PizzasList = () => {
   return (
     <>
       {error && <Error message={error} />}
+      {actionSuccess && <Success message={'Pizza delete successfully'} />}
       <MetaData title={'Pizzas List'} />
       <div>
         <h2

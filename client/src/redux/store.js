@@ -38,7 +38,7 @@ const finalReducer = combineReducers({
   addNewPizza: addNewPizzaReducer,
   pizzaUpdate: pizzaUpdateReducer,
   pizzaDelete: pizzaDeleteReducer,
-  pizzaActions: pizzaActionsReducer,
+  pizza: pizzaActionsReducer,
   cartReducer: cartReducer,
   userRegister: userRegisterReducer,
   userLogin: userLoginReducer,

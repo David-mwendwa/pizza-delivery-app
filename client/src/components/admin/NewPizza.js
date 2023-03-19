@@ -5,9 +5,11 @@ import useInput from '../../utils/useInput';
 import Error from '../Error';
 import Success from '../Success';
 import Loader from '../Loader';
+import { useNavigate } from 'react-router';
 
 const NewPizza = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { loading, success, error } = useSelector((state) => state.addNewPizza);
 
   const { values, handleChange, resetValues } = useInput({
@@ -32,7 +34,8 @@ const NewPizza = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addNewPizza(newPizza));
-    resetValues()
+    resetValues();
+    navigate('/admin/pizzas');
   };
 
   return (
