@@ -54,7 +54,7 @@ const errorHandlerMiddleware = (err, req, res, next) => {
   if (environment && environment === 'production') {
     return handleProductionErrors(err, req, res, next);
   } else {
-    return handleDevelopmentErrors(err, req, res, next);
+    return handleProductionErrors(err, req, res, next);
   }
 };
 

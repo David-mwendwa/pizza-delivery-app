@@ -23,7 +23,7 @@ export const placeOrderReducer = (state = {}, action) => {
   }
 };
 
-export const getMyOrdersReducer = (state = { orders: [] }, action) => {
+export const ordersReducer = (state = { orders: [] }, action) => {
   switch (action.type) {
     case GET_MY_ORDERS_REQUEST:
       return { ...state, loading: true };
@@ -36,7 +36,7 @@ export const getMyOrdersReducer = (state = { orders: [] }, action) => {
   }
 };
 
-export const getSingleOrderReducer = (state = { order: {} }, action) => {
+export const orderDetailsReducer = (state = { order: {} }, action) => {
   switch (action.type) {
     case GET_SINGLE_ORDER_REQUEST:
       return { ...state, loading: true };

@@ -55,6 +55,12 @@ const UpdatePizza = () => {
     }, 2000);
   };
 
+  useEffect(() => {
+    if (updated) {
+      dispatch({ type: PIZZA_RESET });
+    }
+  }, [dispatch, updated]);
+
   return (
     <>
       {loading && <Loader />}

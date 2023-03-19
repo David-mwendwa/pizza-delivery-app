@@ -17,7 +17,8 @@ const PizzasList = () => {
 
   useEffect(() => {
     dispatch(getAllPizzas());
-  }, [dispatch, pizzas]);
+    // Add pizza in order to update state immediately after delete
+  }, [dispatch]);
 
   const setPizzas = () => {
     const data = {
@@ -58,16 +59,19 @@ const PizzasList = () => {
   };
 
   const handleDelete = (id) => {
-    dispatch(deletePizza(id));
+    if (window.confirm('Delete this pizza?')) {
+      dispatch(deletePizza(id));
+    }
   };
 
   useEffect(() => {
     setTimeout(() => {
       if (deleted) {
         dispatch({ type: PIZZA_RESET });
+        window.location.reload();
       }
-    }, 2000);
-  }, [dispatch, deleted]);
+    }, 500);
+  }, [dispatch, deleted, pizzas]);
 
   return (
     <>
