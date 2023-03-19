@@ -5,7 +5,7 @@ const stripe = new Stripe(
   'sk_test_51Imu8iKOyrEmScQW3cepN6ppj7EXKrrhf3VTtEkBihn9Kt2o8S5PH4Or5w7VARuWOmF6HTsbU8LrbiT2g6oGFnid00mvREAaRm'
 );
 import Order from '../models/orderModel.js';
-import { getOne } from '../utils/handleAPI.js';
+import { deleteOne, getMany, getOne, updateOne } from '../utils/handleAPI.js';
 
 export const placeOrder = async (req, res) => {
   // when using authentication, currentUser isn't really needed - you can access the user from the req
@@ -64,3 +64,9 @@ export const getMyOrders = async (req, res) => {
 // export const getMyOrders = getMany(Order);
 
 export const getSingleOrder = getOne(Order);
+
+export const getOrders = getMany(Order);
+
+export const updateOrder = updateOne(Order);
+
+export const deleteOrder = deleteOne(Order);

@@ -9,7 +9,7 @@ import Registerscreen from './screens/Registerscreen';
 import SingleOrderscreen from './screens/SingleOrderscreen';
 import Adminscreen from './components/admin/Adminscreen';
 import UsersList from './components/admin/UsersList';
-import OrdersList from './components/admin/UsersList';
+import OrdersList from './components/admin/OrdersList';
 import PizzasList from './components/admin/PizzasList';
 import NewPizza from './components/admin/NewPizza';
 import UpdatePizza from './components/admin/UpdatePizza';

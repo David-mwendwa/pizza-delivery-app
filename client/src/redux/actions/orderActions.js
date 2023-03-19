@@ -9,6 +9,9 @@ import {
   GET_SINGLE_ORDER_REQUEST,
   GET_SINGLE_ORDER_SUCCESS,
   GET_SINGLE_ORDER_FAIL,
+  ORDERS_REQUEST,
+  ORDERS_SUCCESS,
+  ORDERS_FAIL,
 } from '../constants/orderConstants';
 
 export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
@@ -46,6 +49,23 @@ export const getMyOrders = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_MY_ORDERS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const getOrders = () => async (dispatch) => {
+  dispatch({ type: ORDERS_REQUEST });
+
+  try {
+    const { data } = await axios.get(`/api/v1/admin/orders`);
+    dispatch({ type: ORDERS_SUCCESS, payload: data.data });
+  } catch (error) {
+    dispatch({
+      type: ORDERS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

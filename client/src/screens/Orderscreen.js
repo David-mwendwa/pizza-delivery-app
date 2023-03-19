@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { MDBDataTable } from 'mdbreact';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMyOrders } from '../redux/actions/orderActions';
@@ -22,7 +21,6 @@ const ListOrders = () => {
         { label: 'Num of Items', field: 'numOfItems', sort: 'asc' },
         { label: 'Amount', field: 'amount', sort: 'asc' },
         { label: 'Status', field: 'status', sort: 'asc' },
-        { label: 'Actions', field: 'actions', sort: 'asc' },
       ],
       rows: [],
     };
@@ -31,7 +29,7 @@ const ListOrders = () => {
       data.rows.push({
         id: order._id,
         numOfItems: order.orderItems.length,
-        amount: `Ksh. ${order.orderAmount}`,
+        amount: `Kes ${order.orderAmount}`,
         status:
           order.orderStatus &&
           String(order.orderStatus).includes('Delivered') ? (
@@ -39,11 +37,6 @@ const ListOrders = () => {
           ) : (
             <p style={{ color: 'red' }}>{order.orderStatus}</p>
           ),
-        actions: (
-          <Link to={`/orders/${order._id}`} className='btn btn-light'>
-            <i className='fa fa-eye'></i>
-          </Link>
-        ),
       });
     });
 
