@@ -3,16 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import Error from '../components/Error';
 import Loader from '../components/Loader';
-import { getSingleOrder } from '../redux/actions/orderActions';
+import { getOrder } from '../redux/actions/orderActions';
 
 const SingleOrderscreen = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const getSingleOrderState = useSelector((state) => state.getSingleOrder);
-  const { loading, error, order } = getSingleOrderState;
+  const { loading, order, error } = useSelector((state) => state.orderDetails);
 
   useEffect(() => {
-    dispatch(getSingleOrder(id));
+    dispatch(getOrder(id));
   }, [dispatch, id]);
   return (
     <div>

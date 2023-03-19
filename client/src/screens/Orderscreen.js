@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getMyOrders } from '../redux/actions/orderActions';
 import Loader from '../components/Loader';
 import Error from '../components/Error';
+import Moment from 'react-moment';
 
 const ListOrders = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const ListOrders = () => {
         { label: 'Num of Items', field: 'numOfItems', sort: 'asc' },
         { label: 'Amount', field: 'amount', sort: 'asc' },
         { label: 'Status', field: 'status', sort: 'asc' },
+        { label: 'Date', field: 'date', sort: 'asc' },
       ],
       rows: [],
     };
@@ -37,6 +39,7 @@ const ListOrders = () => {
           ) : (
             <p style={{ color: 'red' }}>{order.orderStatus}</p>
           ),
+        date: <Moment format='YYYY-MM-DD, h:mm a'>{order.paidAt}</Moment>,
       });
     });
 

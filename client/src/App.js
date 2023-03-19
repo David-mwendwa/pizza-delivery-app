@@ -75,6 +75,15 @@ function App() {
               exact
             />
             <Route
+              path='/admin/orders/:id'
+              element={
+                <Protected>
+                  <SingleOrderscreen isAdmin={true} />
+                </Protected>
+              }
+              exact
+            />
+            <Route
               path='/admin/users'
               element={
                 <Protected>

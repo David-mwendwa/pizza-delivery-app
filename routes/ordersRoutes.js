@@ -20,6 +20,7 @@ router
 
 router
   .route('/admin/orders/:id')
+  .get(protect, authorizePermissions(true), getSingleOrder)
   .patch(protect, authorizePermissions(true), updateOrder)
   .delete(protect, authorizePermissions(true), deleteOrder);
 
