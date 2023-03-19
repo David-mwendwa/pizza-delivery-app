@@ -1,10 +1,5 @@
 import axios from 'axios';
 import {
-  UPDATE_ONE_FAIL,
-  UPDATE_ONE_REQUEST,
-  UPDATE_ONE_SUCCESS,
-} from '../constants/actionConstants';
-import {
   GET_PIZZAS_FAIL,
   GET_PIZZAS_REQUEST,
   GET_PIZZAS_SUCCESS,
@@ -17,13 +12,15 @@ import {
   GET_PIZZA_DETAILS_FAIL,
   GET_PIZZA_DETAILS_REQUEST,
   GET_PIZZA_DETAILS_SUCCESS,
+  UPDATE_PIZZA_REQUEST,
+  UPDATE_PIZZA_SUCCESS,
+  UPDATE_PIZZA_FAIL,
 } from '../constants/pizzaConstants';
 
 export const getAllPizzas = () => async (dispatch) => {
   dispatch({ type: GET_PIZZAS_REQUEST });
   try {
     const { data } = await axios.get('/api/v1/pizzas');
-    console.log('PIZZAS', data);
     dispatch({ type: GET_PIZZAS_SUCCESS, payload: data.data });
   } catch (error) {
     dispatch({ type: GET_PIZZAS_FAIL, payload: error });
@@ -34,7 +31,6 @@ export const getPizzaDetails = (id) => async (dispatch) => {
   dispatch({ type: GET_PIZZA_DETAILS_REQUEST });
   try {
     const { data } = await axios.get(`/api/v1/pizzas/${id}`);
-    console.log('PIZZA DETAILS', data);
     dispatch({ type: GET_PIZZA_DETAILS_SUCCESS, payload: data.data });
   } catch (error) {
     dispatch({ type: GET_PIZZA_DETAILS_FAIL, payload: error });
@@ -103,12 +99,12 @@ export const deletePizza = (id) => async (dispatch) => {
 export const updatePizza = (id, newDetails) => async (dispatch) => {
   console.log({ id, newDetails });
   try {
-    dispatch({ type: UPDATE_ONE_REQUEST });
+    dispatch({ type: UPDATE_PIZZA_REQUEST });
     await axios.patch(`/api/v1/admin/pizza/${id}`, newDetails);
-    dispatch({ type: UPDATE_ONE_SUCCESS });
+    dispatch({ type: UPDATE_PIZZA_SUCCESS });
   } catch (error) {
     dispatch({
-      type: UPDATE_ONE_FAIL,
+      type: UPDATE_PIZZA_FAIL,
       payload: error.response.data.message,
     });
   }

@@ -9,6 +9,8 @@ import {
   getAllPizzasReducer,
   getPizzaDetailsReducer,
   pizzaActionsReducer,
+  pizzaDeleteReducer,
+  pizzaUpdateReducer,
 } from './reducers/pizzaReducers';
 import { cartReducer } from './reducers/cartReducer';
 import { userLoginReducer, userRegisterReducer } from './reducers/userReducer';
@@ -34,6 +36,8 @@ const finalReducer = combineReducers({
   getAllPizzas: getAllPizzasReducer,
   getPizzaDetails: getPizzaDetailsReducer,
   addNewPizza: addNewPizzaReducer,
+  pizzaUpdate: pizzaUpdateReducer,
+  pizzaDelete: pizzaDeleteReducer,
   pizzaActions: pizzaActionsReducer,
   cartReducer: cartReducer,
   userRegister: userRegisterReducer,

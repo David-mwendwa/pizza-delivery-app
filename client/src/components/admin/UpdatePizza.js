@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useInput from '../../utils/useInput';
 import Error from '../Error';
 import Success from '../Success';
@@ -16,38 +17,31 @@ const UpdatePizza = () => {
   const [category, setCategory] = useState();
   const [image, setImage] = useState();
 
-  // const { values, handleChange } = useInput({
-  //   name: pizza.name,
-  //   small: pizza?.prices[0]['small'],
-  //   medium: pizza?.prices[0]['medium'],
-  //   large: pizza?.prices[0]['large'],
-  //   description: pizza?.description,
-  //   category: pizza?.category,
-  // });
-  // const { name, image, small, medium, large, description, category, image } = values;
-
   const { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const pizzaActionsState = useSelector((state) => state.pizzaActions);
-  const {
-    loading: actionLoading,
-    success: actionSuccess,
-    error: actionError,
-  } = pizzaActionsState;
+  // const pizzaActionsState = useSelector((state) => state.pizzaActions);
+  // const {
+  //   loading: actionLoading,
+  //   success: actionSuccess,
+  //   error: actionError,
+  // } = pizzaActionsState;
   const pizzaDetails = useSelector((state) => state.getPizzaDetails);
-  let { pizza } = pizzaDetails;
+  let { loading, pizza, error } = pizzaDetails;
 
   //TODO: fix page hang up with white screen on load
   useEffect(() => {
     dispatch(getPizzaDetails(id));
     setName(pizza?.name);
-    setSmall(pizza?.prices[0]['small']);
-    setMedium(pizza?.prices[0]['medium']);
-    setLarge(pizza?.prices[0]['large']);
+    setSmall(pizza?.prices && pizza?.prices[0]['small']);
+    setMedium(pizza?.prices && pizza?.prices[0]['medium']);
+    setLarge(pizza?.prices && pizza?.prices[0]['large']);
     setDescription(pizza?.description);
     setCategory(pizza?.category);
     // setImage(pizza?.image);
-  }, [dispatch, id, pizza]);
+  }, [dispatch, id]);
+
+  // useEffect(() => {}, [pizza]);
 
   const newDetails = {
     name,
@@ -60,17 +54,18 @@ const UpdatePizza = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updatePizza(id, newDetails));
+    navigate('/admin/pizzas');
   };
 
   return (
     <>
-      {actionLoading && <Loader />}
+      {loading && <Loader />}
       <div className='row d-flex justify-content-center align-items-center h-100'>
         <div className='col-xl-9'>
           <h1 className=' mb-4 text-center'>UPDATE PIZZA</h1>
           <div className='card' style={{ borderRadius: '15px' }}>
-            {actionSuccess && <Success message='pizza updated successfully' />}
-            {actionError && <Error message={actionError} />}
+            {/* {success && <Success message='pizza updated successfully' />} */}
+            {/* {error && <Error message={error} />} */}
             <div className='card-body'>
               <div className='row align-items-center pt-4 pb-3'>
                 <div className='col-md-3 ps-5'>

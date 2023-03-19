@@ -14,8 +14,8 @@ export const registerUser = (user) => async (dispatch) => {
 
   try {
     const { data } = await axios.post('/api/v1/users/register', user);
-    dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
-    dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+    dispatch({ type: USER_REGISTER_SUCCESS, payload: data.user });
+    dispatch({ type: USER_LOGIN_SUCCESS, payload: data.user });
     localStorage.setItem('currentUser', JSON.stringify(data.user));
   } catch (error) {
     dispatch({
@@ -35,7 +35,7 @@ export const login = (user) => async (dispatch) => {
     const config = { headers: { 'Content-Type': 'application/json' } };
     const { data } = await axios.post('/api/v1/users/login', user, config);
     console.log({ data });
-    dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+    dispatch({ type: USER_LOGIN_SUCCESS, payload: data.user });
     localStorage.setItem('currentUser', JSON.stringify(data.user));
   } catch (error) {
     dispatch({

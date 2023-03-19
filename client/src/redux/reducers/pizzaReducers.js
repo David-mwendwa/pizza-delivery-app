@@ -55,6 +55,32 @@ export const addNewPizzaReducer = (state = {}, action) => {
   }
 };
 
+export const pizzaUpdateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case UPDATE_PIZZA_REQUEST:
+      return { ...state, loading: true };
+    case UPDATE_PIZZA_SUCCESS:
+      return { ...state, loading: false, success: true };
+    case UPDATE_PIZZA_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const pizzaDeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    case DELETE_PIZZA_REQUEST:
+      return { ...state, loading: true };
+    case DELETE_PIZZA_SUCCESS:
+      return { ...state, loading: false, success: true };
+    case DELETE_PIZZA_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
 export const pizzaActionsReducer = (state = {}, action) => {
   switch (action.type) {
     case UPDATE_PIZZA_REQUEST:

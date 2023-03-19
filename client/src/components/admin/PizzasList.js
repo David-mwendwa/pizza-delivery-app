@@ -10,12 +10,11 @@ import Error from '../Error';
 const PizzasList = () => {
   const dispatch = useDispatch();
   const pizzasstate = useSelector((state) => state.getAllPizzas);
-  console.log({ pizzasstate });
   const { pizzas, error, loading } = pizzasstate;
 
   useEffect(() => {
     dispatch(getAllPizzas());
-  }, [dispatch, pizzas]);
+  }, [dispatch]);
 
   useEffect(() => {}, [pizzas]);
 
