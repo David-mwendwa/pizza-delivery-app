@@ -10,7 +10,11 @@ import {
   pizzasReducer,
 } from './reducers/pizzaReducers';
 import { cartReducer } from './reducers/cartReducer';
-import { userLoginReducer, userRegisterReducer } from './reducers/userReducer';
+import {
+  userLoginReducer,
+  userReducer,
+  userRegisterReducer,
+} from './reducers/userReducer';
 import {
   orderDetailsReducer,
   ordersReducer,
@@ -24,6 +28,7 @@ const finalReducer = combineReducers({
   cartReducer: cartReducer,
   userRegister: userRegisterReducer,
   userLogin: userLoginReducer,
+  user: userReducer,
   placeOrder: placeOrderReducer,
   orders: ordersReducer,
   orderDetails: orderDetailsReducer,

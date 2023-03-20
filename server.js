@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use('/api/v1/pizzas', pizzasRouter);
-app.use('/api/v1/users', userRouter);
+app.use('/api/v1', userRouter);
 app.use('/api/v1', orderRouter);
 app.use('/api/v1/admin', adminRouter);
 

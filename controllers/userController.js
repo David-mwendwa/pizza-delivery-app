@@ -1,6 +1,7 @@
 import User from '../models/userModel.js';
 import { BadRequestError, UnauthenticatedError } from '../errors/index.js';
 import { sendToken } from '../utils/jwt.js';
+import { deleteOne, getMany, getOne, updateOne } from '../utils/handleAPI.js';
 
 export const registerUser = async (req, res) => {
   const { name, email, password, passwordConfirm, isAdmin } = req.body;
@@ -41,3 +42,11 @@ export const logout = async (req, res, next) => {
   res.cookie('token', null, { expires: new Date(Date.now()), httpOnly: true });
   res.status(200).json({ success: true, message: 'Logged out' });
 };
+
+export const getUsers = getMany(User);
+
+export const getUserDetails = getOne(User);
+
+export const updateUser = updateOne(User);
+
+export const deleteUser = deleteOne(User);
