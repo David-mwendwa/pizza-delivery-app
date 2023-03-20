@@ -73,7 +73,7 @@ const Pizza = ({ pizza }) => {
         </div>
       </div>
 
-      <Modal show={show}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header>
           <Modal.Title>{pizza.name}</Modal.Title>
         </Modal.Header>

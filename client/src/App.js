@@ -7,7 +7,7 @@ import Loginscreen from './screens/Loginscreen';
 import Orderscreen from './screens/Orderscreen';
 import Registerscreen from './screens/Registerscreen';
 import SingleOrderscreen from './screens/SingleOrderscreen';
-import Adminscreen from './components/admin/Adminscreen';
+import Adminscreen from './components/admin/Adminscreen_';
 import UsersList from './components/admin/UsersList';
 import OrdersList from './components/admin/OrdersList';
 import PizzasList from './components/admin/PizzasList';
