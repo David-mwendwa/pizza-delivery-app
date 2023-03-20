@@ -10,11 +10,11 @@ import Moment from 'react-moment';
 import {
   deleteUser,
   getUsers,
+  resetUser,
   updateUser,
 } from '../../redux/actions/userActions';
 import { Link } from 'react-router-dom';
 import Success from '../Success';
-import { USER_RESET } from '../../redux/constants/userConstants';
 
 const UsersList = () => {
   const dispatch = useDispatch();
@@ -39,7 +39,6 @@ const UsersList = () => {
         updateUser(userId, { isAdmin: /admin/i.test(userRole) ? true : false })
       );
       handleClose();
-      window.location.reload();
     }
   };
 
@@ -57,11 +56,11 @@ const UsersList = () => {
   useEffect(() => {
     setTimeout(() => {
       if (updated || deleted) {
-        dispatch({ type: USER_RESET });
+        dispatch(resetUser());
         window.location.reload();
       }
     }, 2000);
-  }, [dispatch, updated, deleted, users]);
+  }, [dispatch, updated, deleted]);
 
   const setUsers = () => {
     const data = {
@@ -113,17 +112,18 @@ const UsersList = () => {
   return (
     <>
       {error && <Error message={error} />}
+      {updated && <Success message={'User updated successfully'} />}
+      {deleted && <Success message={'User deleted successfully'} />}
       {loading ? (
         <Loader />
       ) : (
         <div>
-          <h2
+          {/* <h2
             className='text-center text-decoration-underline'
             style={{ fontSize: '25px', opacity: '.7' }}>
             USERS ({users.length})
-          </h2>
-          {updated && <Success message={'User updated successfully'} />}
-          {deleted && <Success message={'User deleted successfully'} />}
+          </h2> */}
+
           <MDBDataTable
             data={setUsers()}
             className='px-3'

@@ -4,13 +4,21 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { MDBDataTable } from 'mdbreact';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOrders, updateOrder } from '../../redux/actions/orderActions';
+import {
+  deleteOrder,
+  getOrders,
+  resetOrder,
+  updateOrder,
+} from '../../redux/actions/orderActions';
 import Loader from '../Loader';
 import Error from '../Error';
 import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
+import Success from '../Success';
 
 const OrdersList = () => {
   const dispatch = useDispatch();
+  const { updated, deleted } = useSelector((state) => state.order);
   const orderstate = useSelector((state) => state.orders);
   const { loading, error, orders } = orderstate;
 
@@ -37,6 +45,23 @@ const OrdersList = () => {
     handleShow();
     setOrderId(id);
   };
+
+  const handleDelete = (id) => {
+    if (window.confirm('Delete this order?')) {
+      dispatch(deleteOrder(id));
+    }
+  };
+
+  // TODO: inspect if this hook functions
+  useEffect(() => {
+    setTimeout(() => {
+      if (updated || deleted) {
+        console.log({ updated, deleted });
+        dispatch(resetOrder());
+        window.location.reload();
+      }
+    }, 2000);
+  }, [dispatch, updated, deleted]);
 
   const setOrders = () => {
     const data = {
@@ -70,10 +95,16 @@ const OrdersList = () => {
         date: <Moment format='YYYY-MM-DD'>{order.paidAt}</Moment>,
         actions: (
           <>
-            <button
-              className='btn btn-secondary'
+            <Link
+              to=''
+              className='py-1 px-2'
               onClick={() => handleActionBtn(order._id)}>
-              UPDATE
+              <i className='fa fa-pencil-square' aria-hidden='true'></i>
+            </Link>
+            <button
+              className='btn py-1 px-2 ml-2'
+              onClick={() => handleDelete(order._id)}>
+              <i className='fa fa-trash'></i>
             </button>
           </>
         ),
@@ -86,15 +117,17 @@ const OrdersList = () => {
   return (
     <>
       {error && <Error message={error} />}
+      {updated && <Success message={'Order updated successfully'} />}
+      {deleted && <Success message={'Order deleted successfully'} />}
       {loading ? (
         <Loader />
       ) : (
         <div>
-          <h2
+          {/* <h2
             className='text-center text-decoration-underline'
             style={{ fontSize: '25px', opacity: '.7' }}>
             MY ORDERS ({orders.length})
-          </h2>
+          </h2> */}
           <MDBDataTable
             data={setOrders()}
             className='px-3'

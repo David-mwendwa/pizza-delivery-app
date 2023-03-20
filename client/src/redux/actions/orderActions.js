@@ -18,16 +18,17 @@ import {
   ORDER_DELETE_REQUEST,
   ORDER_DELETE_SUCCESS,
   ORDER_DELETE_FAIL,
+  ORDER_RESET,
 } from '../constants/orderConstants';
 
 export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
   dispatch({ type: ORDER_CREATE_REQUEST });
 
   const currentUser = getState().userLogin.currentUser;
-  const cartItems = getState().cartReducer.cartItems;
+  const cartItems = getState().cart.cartItems;
 
   try {
-    const { data } = await axios.post('/api/v1/orders/placeorder', {
+    const { data } = await axios.post('/api/v1/orders/new', {
       token,
       subtotal,
       currentUser,
@@ -132,4 +133,12 @@ export const deleteOrder = (id) => async (dispatch) => {
           : error.message,
     });
   }
+};
+
+/**
+ * Reset order state after UPDATE or DELETE
+ * @returns empty object
+ */
+export const resetOrder = () => async (dispatch) => {
+  dispatch({ type: ORDER_RESET });
 };

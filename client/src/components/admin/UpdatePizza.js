@@ -2,12 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import useInput from '../../utils/useInput';
 import Error from '../Error';
 import Success from '../Success';
 import Loader from '../Loader';
-import { getPizzaDetails, updatePizza } from '../../redux/actions/pizzaActions';
-import { PIZZA_RESET } from '../../redux/constants/pizzaConstants';
+import {
+  getPizzaDetails,
+  resetPizza,
+  updatePizza,
+} from '../../redux/actions/pizzaActions';
 
 const UpdatePizza = () => {
   const [name, setName] = useState();
@@ -21,7 +23,9 @@ const UpdatePizza = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading, pizza, updated } = useSelector((state) => state.pizza);
+  const { loading, pizza, updated, error } = useSelector(
+    (state) => state.pizza
+  );
 
   useEffect(() => {
     if (pizza) {
@@ -49,14 +53,15 @@ const UpdatePizza = () => {
     e.preventDefault();
     dispatch(updatePizza(id, newDetails));
     setTimeout(() => {
-      navigate('/admin/pizzas');
+      navigate('/admin/dashboard');
     }, 2000);
   };
 
   useEffect(() => {
     setTimeout(() => {
       if (updated) {
-        dispatch({ type: PIZZA_RESET });
+        dispatch(resetPizza());
+        window.location.reload();
       }
     }, 2000);
   }, [dispatch, updated]);
@@ -64,12 +69,12 @@ const UpdatePizza = () => {
   return (
     <>
       {loading && <Loader />}
-      {updated && <Success message={'Pizza updated successfully'} />}
       <div className='row d-flex justify-content-center align-items-center h-100'>
         <div className='col-xl-9'>
-          <h1 className=' mb-4 text-center'>UPDATE PIZZA</h1>
+          {/* <h1 className=' mb-4 text-center'>UPDATE PIZZA</h1> */}
           <div className='card' style={{ borderRadius: '15px' }}>
-            {/* {error && <Error message={error} />} */}
+            {updated && <Success message='Pizza updated successfully' />}
+            {error && <Error message={error} />}
             <div className='card-body'>
               <div className='row align-items-center pt-4 pb-3'>
                 <div className='col-md-3 ps-5'>

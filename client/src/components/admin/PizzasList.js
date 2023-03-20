@@ -3,11 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { MDBDataTable } from 'mdbreact';
 import MetaData from '../MetaData';
-import { deletePizza, getAllPizzas } from '../../redux/actions/pizzaActions';
+import {
+  deletePizza,
+  getAllPizzas,
+  resetPizza,
+} from '../../redux/actions/pizzaActions';
 import Loader from '../Loader';
 import Error from '../Error';
 import Success from '../Success';
-import { PIZZA_RESET } from '../../redux/constants/pizzaConstants';
 
 const PizzasList = () => {
   const dispatch = useDispatch();
@@ -17,7 +20,6 @@ const PizzasList = () => {
 
   useEffect(() => {
     dispatch(getAllPizzas());
-    // Add pizza in order to update state immediately after delete
   }, [dispatch]);
 
   const setPizzas = () => {
@@ -67,11 +69,11 @@ const PizzasList = () => {
   useEffect(() => {
     setTimeout(() => {
       if (deleted) {
-        dispatch({ type: PIZZA_RESET });
+        dispatch(resetPizza());
         window.location.reload();
       }
-    }, 500);
-  }, [dispatch, deleted, pizzas]);
+    }, 2000);
+  }, [dispatch, deleted]);
 
   return (
     <>
@@ -79,11 +81,11 @@ const PizzasList = () => {
       {deleted && <Success message={'Pizza deleted successfully'} />}
       <MetaData title={'Pizzas List'} />
       <div>
-        <h2
+        {/* <h2
           className='text-center text-decoration-underline'
           style={{ fontSize: '35px', opacity: '.7' }}>
           ALL PIZZAS
-        </h2>
+        </h2> */}
         {loading ? (
           <Loader />
         ) : (

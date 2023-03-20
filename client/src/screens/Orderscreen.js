@@ -33,11 +33,13 @@ const ListOrders = () => {
         numOfItems: order.orderItems.length,
         amount: `Kes ${order.orderAmount}`,
         status:
-          order.orderStatus &&
-          String(order.orderStatus).includes('Delivered') ? (
-            <p style={{ color: 'green' }}>{order.orderStatus}</p>
+          order.orderStatus && /delivered/i.test(String(order.orderStatus)) ? (
+            <p className='text-success'>{order.orderStatus}</p>
+          ) : order.orderStatus &&
+            /shipping/i.test(String(order.orderStatus)) ? (
+            <p className='text-primary'>{order.orderStatus}</p>
           ) : (
-            <p style={{ color: 'red' }}>{order.orderStatus}</p>
+            <p className='text-danger'>{order.orderStatus}</p>
           ),
         date: <Moment format='YYYY-MM-DD, h:mm a'>{order.paidAt}</Moment>,
       });

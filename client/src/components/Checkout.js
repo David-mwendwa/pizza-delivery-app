@@ -8,8 +8,7 @@ import Loader from './Loader';
 
 const Checkout = ({ subtotal }) => {
   const dispatch = useDispatch();
-  const placeOrderState = useSelector((state) => state.placeOrder);
-  const { loading, success, error } = placeOrderState;
+  const { loading, created, error } = useSelector((state) => state.order);
 
   const tokenHandler = (token) => {
     console.log({ token });
@@ -20,7 +19,7 @@ const Checkout = ({ subtotal }) => {
     <div>
       {loading && <Loader />}
       {error && <Error message={error} />}
-      {success && <Success message={'Your order placed successfully'} />}
+      {created && <Success message={'Your order placed successfully'} />}
 
       <StripeCheckout
         amount={subtotal} // /100 if the subtotal is in Ksh

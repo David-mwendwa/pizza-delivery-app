@@ -15,6 +15,7 @@ import {
   PIZZA_UPDATE_REQUEST,
   PIZZA_UPDATE_SUCCESS,
   PIZZA_UPDATE_FAIL,
+  PIZZA_RESET,
 } from '../constants/pizzaConstants';
 
 export const getAllPizzas = () => async (dispatch) => {
@@ -106,4 +107,12 @@ export const updatePizza = (id, newDetails) => async (dispatch) => {
       payload: error.response.data.message,
     });
   }
+};
+
+/**
+ * Reset pizza state after UPDATE or DELETE
+ * @returns empty object
+ */
+export const resetPizza = () => async (dispatch) => {
+  dispatch({ type: PIZZA_RESET });
 };

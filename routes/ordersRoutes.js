@@ -10,7 +10,7 @@ import {
 import { authorizePermissions, protect } from '../middleware/auth.js';
 const router = express.Router();
 
-router.route('/order/placeorder').post(placeOrder);
+router.route('/orders/new').post(placeOrder);
 router.route('/orders/me').get(protect, getMyOrders);
 router.route('/orders/:id').get(protect, getSingleOrder);
 

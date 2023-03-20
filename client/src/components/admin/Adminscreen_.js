@@ -17,24 +17,27 @@ const Adminscreen = () => {
   });
 
   return (
-    <Tabs
-      defaultActiveKey='users'
-      id='justify-tab-example'
-      className='mb-3'
-      justify>
-      <Tab eventKey='users' title='Users'>
-        <UsersList />
-      </Tab>
-      <Tab eventKey='orders' title='Orders'>
-        <OrdersList />
-      </Tab>
-      <Tab eventKey='pizzas' title='Pizzas'>
-        <PizzasList />
-      </Tab>
-      <Tab eventKey='addNewPizza' title='Add new pizza'>
-        <NewPizza />
-      </Tab>
-    </Tabs>
+    <>
+      <h1 className=' mb-4 text-center text-muted'>ADMIN PANEL</h1>
+      <Tabs
+        defaultActiveKey='users'
+        id='justify-tab-example'
+        className='mb-3'
+        justify>
+        <Tab eventKey='users' title='USERS'>
+          <UsersList />
+        </Tab>
+        <Tab eventKey='orders' title='ORDERS'>
+          <OrdersList />
+        </Tab>
+        <Tab eventKey='pizzas' title='PIZZAS'>
+          <PizzasList />
+        </Tab>
+        <Tab eventKey='createpizza' title='CREATE PIZZA'>
+          <NewPizza />
+        </Tab>
+      </Tabs>
+    </>
   );
 };
 

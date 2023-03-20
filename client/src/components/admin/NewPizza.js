@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNewPizza } from '../../redux/actions/pizzaActions';
+import { addNewPizza, resetPizza } from '../../redux/actions/pizzaActions';
 import useInput from '../../utils/useInput';
 import Error from '../Error';
 import Success from '../Success';
 import Loader from '../Loader';
 import { useNavigate } from 'react-router';
-import { PIZZA_RESET } from '../../redux/constants/pizzaConstants';
 
 const NewPizza = () => {
   const dispatch = useDispatch();
@@ -37,14 +36,15 @@ const NewPizza = () => {
     dispatch(addNewPizza(newPizza));
     resetValues();
     setTimeout(() => {
-      navigate('/admin/pizzas');
+      navigate('/admin/dashboard');
     }, 2000);
   };
 
   useEffect(() => {
     setTimeout(() => {
       if (created) {
-        dispatch({ type: PIZZA_RESET });
+        dispatch(resetPizza());
+        window.location.reload();
       }
     }, 2000);
   }, [dispatch, created]);
@@ -54,9 +54,9 @@ const NewPizza = () => {
       {loading && <Loader />}
       <div className='row d-flex justify-content-center align-items-center h-100'>
         <div className='col-xl-9'>
-          <h1 className=' mb-4 text-center'>Add New Pizza</h1>
+          {/* <h1 className=' mb-4 text-center'>CREATE NEW PIZZA</h1> */}
           <div className='card' style={{ borderRadius: '15px' }}>
-            {created && <Success message='new pizza added successfully' />}
+            {created && <Success message='Pizza created successfully' />}
             {error && <Error message={error} />}
             <div className='card-body'>
               <div className='row align-items-center pt-4 pb-3'>

@@ -19,6 +19,7 @@ import {
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
   USER_DELETE_FAIL,
+  USER_RESET,
 } from '../constants/userConstants';
 
 export const registerUser = (user) => async (dispatch) => {
@@ -133,4 +134,12 @@ export const updateUser = (id, newDetails) => async (dispatch) => {
       payload: error.response.data.message,
     });
   }
+};
+
+/**
+ * Reset user state after UPDATE or DELETE
+ * @returns empty object
+ */
+export const resetUser = () => async (dispatch) => {
+  dispatch({ type: USER_RESET });
 };
