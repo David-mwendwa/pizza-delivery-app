@@ -7,10 +7,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../Loader';
 import Error from '../Error';
 import Moment from 'react-moment';
-import { getUsers, updateUser } from '../../redux/actions/userActions';
+import {
+  deleteUser,
+  getUsers,
+  updateUser,
+} from '../../redux/actions/userActions';
+import { Link } from 'react-router-dom';
+import Success from '../Success';
+import { USER_RESET } from '../../redux/constants/userConstants';
 
 const UsersList = () => {
   const dispatch = useDispatch();
+  const { updated, deleted } = useSelector((state) => state.user);
   const usersstate = useSelector((state) => state.users);
   const { loading, error, users } = usersstate;
 
@@ -40,6 +48,21 @@ const UsersList = () => {
     setUserId(id);
   };
 
+  const handleDelete = (id) => {
+    if (window.confirm('Delete this user?')) {
+      dispatch(deleteUser(id));
+    }
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (updated || deleted) {
+        dispatch({ type: USER_RESET });
+        window.location.reload();
+      }
+    }, 2000);
+  }, [dispatch, updated, deleted, users]);
+
   const setUsers = () => {
     const data = {
       columns: [
@@ -66,11 +89,19 @@ const UsersList = () => {
         date: <Moment format='YYYY-MM-DD'>{user.createdAt}</Moment>,
         actions: (
           <>
-            <button
-              className='btn btn-secondary'
-              onClick={() => handleActionBtn(user._id)}>
-              UPDATE
-            </button>
+            <div className='d-flex justify-content-around'>
+              <Link
+                to=''
+                className='py-1 px-2'
+                onClick={() => handleActionBtn(user._id)}>
+                <i className='fa fa-pencil-square' aria-hidden='true'></i>
+              </Link>
+              <button
+                className='btn py-1 px-2 ml-2'
+                onClick={() => handleDelete(user._id)}>
+                <i className='fa fa-trash'></i>
+              </button>
+            </div>
           </>
         ),
       });
@@ -91,6 +122,8 @@ const UsersList = () => {
             style={{ fontSize: '25px', opacity: '.7' }}>
             USERS ({users.length})
           </h2>
+          {updated && <Success message={'User updated successfully'} />}
+          {deleted && <Success message={'User deleted successfully'} />}
           <MDBDataTable
             data={setUsers()}
             className='px-3'
