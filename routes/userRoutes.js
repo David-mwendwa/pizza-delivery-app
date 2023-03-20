@@ -1,6 +1,6 @@
 import express from 'express';
-import { deletUser } from '../client/src/redux/actions/userActions.js';
 import {
+  deleteUser,
   getUserDetails,
   getUsers,
   login,
@@ -8,6 +8,7 @@ import {
   registerUser,
   updateUser,
 } from '../controllers/userController.js';
+import { authorizePermissions, protect } from '../middleware/auth.js';
 const router = express.Router();
 
 router.route('/users/register').post(registerUser);
@@ -20,6 +21,6 @@ router
   .route('/admin/users/:id')
   .get(protect, authorizePermissions(true), getUserDetails)
   .patch(protect, authorizePermissions(true), updateUser)
-  .delete(protect, authorizePermissions(true), deletUser);
+  .delete(protect, authorizePermissions(true), deleteUser);
 
 export default router;
