@@ -4,11 +4,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import devToolsEnhancer from 'remote-redux-devtools';
-import {
-  pizzaDetailsReducer,
-  pizzaReducer,
-  pizzasReducer,
-} from './reducers/pizzaReducers';
+import { pizzaReducer, pizzasReducer } from './reducers/pizzaReducers';
 import { cartReducer } from './reducers/cartReducer';
 import {
   userLoginReducer,
@@ -16,24 +12,18 @@ import {
   userRegisterReducer,
   usersReducer,
 } from './reducers/userReducer';
-import {
-  orderDetailsReducer,
-  ordersReducer,
-  placeOrderReducer,
-} from './reducers/orderReducer';
+import { orderReducer, ordersReducer } from './reducers/orderReducer';
 
 const finalReducer = combineReducers({
   pizzas: pizzasReducer,
-  pizzaDetails: pizzaDetailsReducer,
   pizza: pizzaReducer,
-  cartReducer: cartReducer,
+  cart: cartReducer,
   userRegister: userRegisterReducer,
   userLogin: userLoginReducer,
   users: usersReducer,
   user: userReducer,
-  placeOrder: placeOrderReducer,
   orders: ordersReducer,
-  orderDetails: orderDetailsReducer,
+  order: orderReducer,
 });
 
 const cartItems = localStorage.getItem('cartItems')
@@ -44,7 +34,7 @@ const currentUser = localStorage.getItem('currentUser')
   ? JSON.parse(localStorage.getItem('currentUser'))
   : null;
 
-const initialState = { cartReducer: { cartItems }, userLogin: { currentUser } };
+const initialState = { cart: { cartItems }, userLogin: { currentUser } };
 const composeEnhancers = composeWithDevTools({});
 const store = createStore(
   finalReducer,

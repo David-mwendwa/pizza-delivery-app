@@ -5,7 +5,7 @@ import { logout } from '../redux/actions/userActions';
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const cartState = useSelector((state) => state.cartReducer);
+  const cartState = useSelector((state) => state.cart);
   const { currentUser } = useSelector((state) => state.userLogin);
   // console.log({ currentUser });
 

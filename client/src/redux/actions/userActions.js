@@ -10,12 +10,12 @@ import {
   USERS_REQUEST,
   USERS_SUCCESS,
   USERS_FAIL,
-  USER_DETAILS_REQUEST,
-  USER_DETAILS_SUCCESS,
-  USER_DETAILS_FAIL,
   USER_UPDATE_REQUEST,
   USER_UPDATE_SUCCESS,
   USER_UPDATE_FAIL,
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_SUCCESS,
+  USER_DETAILS_FAIL,
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
   USER_DELETE_FAIL,
@@ -66,7 +66,11 @@ export const logout = () => async (dispatch) => {
   dispatch({ type: USER_LOGOUT });
 };
 
-// get users
+/**
+ * Get a single user
+ * @param {*} id - id to request user details
+ * @returns one document
+ */
 export const getUsers = () => async (dispatch) => {
   dispatch({ type: USERS_REQUEST });
 

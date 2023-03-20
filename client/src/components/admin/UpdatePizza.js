@@ -21,9 +21,7 @@ const UpdatePizza = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { updated } = useSelector((state) => state.pizza);
-  const pizzaDetails = useSelector((state) => state.pizzaDetails);
-  let { loading, pizza, error } = pizzaDetails;
+  const { loading, pizza, updated } = useSelector((state) => state.pizza);
 
   useEffect(() => {
     if (pizza) {

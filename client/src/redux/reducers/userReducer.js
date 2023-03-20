@@ -75,15 +75,19 @@ export const userDetails = (state = { user: {} }, action) => {
   }
 };
 
-export const userReducer = (state = {}, action) => {
+export const userReducer = (state = { user: {} }, action) => {
   switch (action.type) {
+    case USER_DETAILS_REQUEST:
     case USER_UPDATE_REQUEST:
     case USER_DELETE_REQUEST:
       return { ...state, loading: true };
+    case USER_DETAILS_SUCCESS:
+      return { loading: false, user: action.payload };
     case USER_UPDATE_SUCCESS:
       return { ...state, loading: false, updated: true };
     case USER_DELETE_SUCCESS:
       return { ...state, loading: false, deleted: true };
+    case USER_DETAILS_FAIL:
     case USER_UPDATE_FAIL:
     case USER_DELETE_FAIL:
       return { loading: false, error: action.payload };

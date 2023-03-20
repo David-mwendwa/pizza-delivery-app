@@ -1,14 +1,14 @@
 import axios from 'axios';
 import {
-  PLACE_ORDER_REQUEST,
-  PLACE_ORDER_SUCCESS,
-  PLACE_ORDER_FAIL,
-  GET_MY_ORDERS_REQUEST,
-  GET_MY_ORDERS_SUCCESS,
-  GET_MY_ORDERS_FAIL,
-  GET_SINGLE_ORDER_REQUEST,
-  GET_SINGLE_ORDER_SUCCESS,
-  GET_SINGLE_ORDER_FAIL,
+  ORDER_CREATE_REQUEST,
+  ORDER_CREATE_SUCCESS,
+  ORDER_CREATE_FAIL,
+  MY_ORDERS_REQUEST,
+  MY_ORDERS_SUCCESS,
+  MY_ORDERS_FAIL,
+  ORDER_DETAILS_REQUEST,
+  ORDER_DETAILS_SUCCESS,
+  ORDER_DETAILS_FAIL,
   ORDERS_REQUEST,
   ORDERS_SUCCESS,
   ORDERS_FAIL,
@@ -21,7 +21,7 @@ import {
 } from '../constants/orderConstants';
 
 export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
-  dispatch({ type: PLACE_ORDER_REQUEST });
+  dispatch({ type: ORDER_CREATE_REQUEST });
 
   const currentUser = getState().userLogin.currentUser;
   const cartItems = getState().cartReducer.cartItems;
@@ -33,10 +33,10 @@ export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
       currentUser,
       cartItems,
     });
-    dispatch({ type: PLACE_ORDER_SUCCESS, payload: data });
+    dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
-      type: PLACE_ORDER_FAIL,
+      type: ORDER_CREATE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
@@ -47,14 +47,14 @@ export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
 
 // Get orders for the currently logged in user
 export const getMyOrders = () => async (dispatch) => {
-  dispatch({ type: GET_MY_ORDERS_REQUEST });
+  dispatch({ type: MY_ORDERS_REQUEST });
 
   try {
     const { data } = await axios.get('/api/v1/orders/me');
-    dispatch({ type: GET_MY_ORDERS_SUCCESS, payload: data.data });
+    dispatch({ type: MY_ORDERS_SUCCESS, payload: data.data });
   } catch (error) {
     dispatch({
-      type: GET_MY_ORDERS_FAIL,
+      type: MY_ORDERS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
@@ -81,14 +81,14 @@ export const getOrders = () => async (dispatch) => {
 };
 
 export const getOrder = (id) => async (dispatch) => {
-  dispatch({ type: GET_SINGLE_ORDER_REQUEST });
+  dispatch({ type: ORDER_DETAILS_REQUEST });
 
   try {
     const { data } = await axios.get(`/api/v1/admin/orders/${id}`);
-    dispatch({ type: GET_SINGLE_ORDER_SUCCESS, payload: data.data });
+    dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data.data });
   } catch (error) {
     dispatch({
-      type: GET_SINGLE_ORDER_FAIL,
+      type: ORDER_DETAILS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

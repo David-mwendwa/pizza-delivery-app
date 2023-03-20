@@ -6,7 +6,7 @@ import { addToCart, deleteFromCart } from '../redux/actions/cartActions';
 
 const Cartscreen = () => {
   const dispatch = useDispatch();
-  const cartstate = useSelector((state) => state.cartReducer);
+  const cartstate = useSelector((state) => state.cart);
   const cartItems = cartstate.cartItems;
 
   const subtotal = cartItems.reduce((x, item) => x + item.price, 0);
